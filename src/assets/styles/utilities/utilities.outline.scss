@@ -1,0 +1,81 @@
+/* ==========================================================================
+   #OUTLINE
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$outline-namespace: $global-namespace-utilities + 'outline' !default;
+$outline-modifier: $global-separator-modifier !default;
+
+$outline-map: (
+	'default': 1px solid,
+	'transparent': 1px solid transparent,
+	'none': 0
+) !default;
+
+$outline-responsive: false !default;
+$outline-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin outline-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $outline-map {
+
+		.#{$outline-namespace}#{$outline-modifier}#{$name}#{$breakpoint-alias} {
+			outline: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include outline-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($outline-responsive == true) {
+
+	@each $size, $width in $outline-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include outline-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

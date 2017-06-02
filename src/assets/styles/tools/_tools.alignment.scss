@@ -1,0 +1,20 @@
+@mixin center-block {
+	position: relative;
+}
+
+@mixin center-block__content {
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@mixin center-block__content--vertical {
+	left: auto;
+	transform: translateY(-50%);
+}
+
+@mixin center-block__content--horizontal {
+	top: auto;
+	transform: translateX(-50%);
+}

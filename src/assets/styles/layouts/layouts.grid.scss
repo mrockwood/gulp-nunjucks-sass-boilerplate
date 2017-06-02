@@ -1,0 +1,233 @@
+/* ==========================================================================
+   #GRID
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$grid-namespace: $global-namespace-layouts + 'grid' !default;
+$grid-element: $global-separator-element !default;
+$grid-modifier: $global-separator-modifier !default;
+$grid-item-name: 'item' !default;
+$grid-align-left-name: 'left' !default;
+$grid-align-right-name: 'right' !default;
+$grid-align-center-name: 'center' !default;
+$grid-align-top-name: 'top' !default;
+$grid-align-middle-name: 'middle' !default;
+$grid-align-bottom-name: 'bottom' !default;
+$grid-align-around-name: 'around' !default;
+$grid-align-between-name: 'between' !default;
+$grid-reverse-name: 'reverse' !default;
+
+$grid-gutter: $global-spacing-default !default;
+
+$grid-gutter-map: $global-spacing;
+
+$grid-responsive: true !default;
+$grid-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin grid-classes($breakpoint-alias: null) {
+
+	/**
+	 * 1. Allow the grid system to be used on lists.
+	 * 2. Remove any margins and paddings that might affect the grid system.
+	 * 3. Add negative margins to compensate for `.grid__item` padding.
+	 */
+	.#{$grid-namespace}#{$breakpoint-alias} {
+		list-style: none; /* [1] */
+		margin: 0; /* [2] */
+		margin-left: ( $grid-gutter / -2 ); /* [3] */
+		margin-right: ( $grid-gutter / -2 ); /* [3] */
+		padding: 0; /* [2] */
+	}
+
+	@supports (display: flex) {
+		.#{$grid-namespace}#{$breakpoint-alias} {
+			display: flex;
+			flex-wrap: wrap;
+		}
+	}
+
+	/**
+	 * Reversed grids allow you to structure your source in the opposite order to
+	 * how your rendered layout will appear.
+	 * Extends `.l-grid`.
+	 */
+	.#{$grid-namespace}#{$grid-modifier}#{$grid-reverse-name}#{$breakpoint-alias} {
+		flex-direction: row-reverse;
+	}
+
+	/**
+	 * Flush grids have all the properties of regular grids, minus any spacing.
+	 * Extends `.l-grid`.
+	 */
+	.#{$grid-namespace}#{$grid-modifier}flush#{$breakpoint-alias} {
+		margin-left: 0;
+		margin-right: 0;
+
+		> * {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+
+	/**
+	 * Align grid cells vertically (`.l-grid--bottom` or `.l-grid--middle` or `.l-grid--top`).
+	 * Extends `.l-grid`.
+	 */
+	.#{$grid-namespace}#{$grid-modifier}#{$grid-align-top-name}#{$breakpoint-alias} {
+		align-items: flex-start;
+	}
+
+	.#{$grid-namespace}#{$grid-modifier}#{$grid-align-middle-name}#{$breakpoint-alias} {
+		align-items: center;
+	}
+
+	.#{$grid-namespace}#{$grid-modifier}#{$grid-align-bottom-name}#{$breakpoint-alias} {
+		align-items: flex-end;
+	}
+
+	/**
+	 * Align grid cells horizontally (`.l-grid--left` or `.l-grid--center` or `.l-grid--right`).
+	 * Extends `.l-grid`.
+	 */
+	.#{$grid-namespace}#{$grid-modifier}#{$grid-align-left-name}#{$breakpoint-alias} {
+		justify-content: flex-start;
+	}
+
+	.#{$grid-namespace}#{$grid-modifier}#{$grid-align-center-name}#{$breakpoint-alias} {
+		justify-content: center;
+	}
+
+	.#{$grid-namespace}#{$grid-modifier}#{$grid-align-right-name}#{$breakpoint-alias} {
+		justify-content: flex-end;
+	}
+
+	.#{$grid-namespace}#{$grid-modifier}#{$grid-align-around-name}#{$breakpoint-alias} {
+		justify-content: space-around;
+	}
+
+	.#{$grid-namespace}#{$grid-modifier}#{$grid-align-between-name}#{$breakpoint-alias} {
+		justify-content: space-between;
+	}
+
+	/**
+	 * Grid items/cells
+	 * 1. Required to combine fluid widths and fixed gutters.
+	 * 2. Fix for Chrome 44 bug.
+ 	 * https://code.google.com/p/chromium/issues/detail?id=506893
+	 * 3. Gutters.
+	 */
+	.#{$grid-namespace}#{$grid-element}#{$grid-item-name}#{$breakpoint-alias} {
+		box-sizing: border-box; /* [1] */
+		float: left;
+		max-width: 100%;
+		min-width: 0; /* [2] */
+		min-height: 0; /* [2] */
+		padding-left: ( $grid-gutter / 2 ); /* [3] */
+		padding-right: ( $grid-gutter / 2 ); /* [3] */
+		width: 100%;
+	}
+
+	@supports (display: flex) {
+		.#{$grid-namespace}#{$grid-element}#{$grid-item-name}#{$breakpoint-alias} {
+			float: none;
+		}
+	}
+
+	/**
+	 * Flush grid itmes have all the properties of regular grid items, minus any spacing.
+	 * Extends `.l-grid__item`.
+	 */
+	.#{$grid-namespace}#{$grid-element}#{$grid-item-name}#{$grid-modifier}flush#{$breakpoint-alias} {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	/**
+	 * Grid item vertical alignment per cell.
+	 * (`.l-grid__item--bottom` or `.l-grid__item--middle` or `.l-grid__item--top`)
+	 * Extends `.l-grid__item`.
+	 */
+	.#{$grid-namespace}#{$grid-element}#{$grid-item-name}#{$grid-modifier}#{$grid-align-top-name}#{$breakpoint-alias} {
+		align-self: flex-start;
+	}
+
+	.#{$grid-namespace}#{$grid-element}#{$grid-item-name}#{$grid-modifier}#{$grid-align-middle-name}#{$breakpoint-alias} {
+		align-self: center;
+	}
+
+	.#{$grid-namespace}#{$grid-element}#{$grid-item-name}#{$grid-modifier}#{$grid-align-bottom-name}#{$breakpoint-alias} {
+		align-self: flex-end;
+	}
+
+	/**
+	 * Grid item horizontal alignment per cell.
+	 * (`.l-grid__item--left` or `.l-grid__item--center` or `.l-grid__item--right`)
+	 * Extends `.l-grid__item`.
+	 */
+	.#{$grid-namespace}#{$grid-element}#{$grid-item-name}#{$grid-modifier}#{$grid-align-left-name}#{$breakpoint-alias} {
+		margin-right: auto;
+	}
+
+	.#{$grid-namespace}#{$grid-element}#{$grid-item-name}#{$grid-modifier}#{$grid-align-center-name}#{$breakpoint-alias} {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.#{$grid-namespace}#{$grid-element}#{$grid-item-name}#{$grid-modifier}#{$grid-align-right-name}#{$breakpoint-alias} {
+		margin-left: auto;
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include grid-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($grid-responsive == true) {
+
+	@each $size, $width in $grid-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include grid-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

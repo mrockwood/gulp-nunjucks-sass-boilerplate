@@ -1,0 +1,87 @@
+/* ==========================================================================
+   #ALIGNMENT
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../tools/tools.alignment";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$alignment-namespace: $global-namespace-layouts + 'center-block' !default;
+$alignment-element: $global-separator-element !default;
+$alignment-modifier: $global-separator-modifier !default;
+$alignment-content-name: 'content' !default;
+$alignment-vertical-name: 'vertical' !default;
+$alignment-horizontal-name: 'horizontal' !default;
+
+$alignment-responsive: false !default;
+$alignment-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin alignment-classes($breakpoint-alias: null) {
+
+	.#{$alignment-namespace}#{$breakpoint-alias} {
+		@include center-block;
+	}
+
+	.#{$alignment-namespace}#{$alignment-element}#{$alignment-content-name}#{$breakpoint-alias} {
+		@include center-block__content;
+	}
+
+	.#{$alignment-namespace}#{$alignment-element}#{$alignment-content-name}#{$alignment-modifier}#{$alignment-vertical-name}#{$breakpoint-alias} {
+		@include center-block__content--vertical;
+	}
+
+	.#{$alignment-namespace}#{$alignment-element}#{$alignment-content-name}#{$alignment-modifier}#{$alignment-horizontal-name}#{$breakpoint-alias} {
+		@include center-block__content--horizontal;
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include alignment-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($alignment-responsive == true) {
+
+	@each $size, $width in $alignment-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include alignment-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

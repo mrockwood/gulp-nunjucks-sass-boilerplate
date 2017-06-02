@@ -1,0 +1,77 @@
+/* ==========================================================================
+   #COLOR
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$color-namespace: $global-namespace-utilities + 'color' !default;
+$color-modifier: $global-separator-modifier !default;
+
+$color-map: $colors;
+
+$color-responsive: false !default;
+$color-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin color-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $color-map {
+
+		.#{$color-namespace}#{$color-modifier}#{$name}#{$breakpoint-alias} {
+			color: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include color-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($color-responsive == true) {
+
+	@each $size, $width in $color-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include color-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

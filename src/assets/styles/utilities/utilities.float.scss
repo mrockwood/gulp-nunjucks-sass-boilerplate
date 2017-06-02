@@ -1,0 +1,84 @@
+/* ==========================================================================
+   #FLOAT
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$float-namespace: $global-namespace-utilities + 'float' !default;
+$float-modifier: $global-separator-modifier !default;
+
+$float-map: (
+	'left': left,
+	'right': right,
+	'none': none
+) !default;
+
+$float-responsive: false !default;
+$float-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin float-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $float-map {
+
+		.#{$float-namespace}#{$float-modifier}#{$name}#{$breakpoint-alias} {
+			@if ($value == left or $value == right) {
+				_display: inline;
+			}
+			float: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include float-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($float-responsive == true) {
+
+	@each $size, $width in $float-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include float-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

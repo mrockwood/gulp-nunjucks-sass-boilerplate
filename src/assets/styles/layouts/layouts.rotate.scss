@@ -1,0 +1,75 @@
+/* ==========================================================================
+   #ROTATE
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$rotate-namespace: $global-namespace-layouts + 'rotate' !default;
+$rotate-modifier: $global-separator-modifier !default;
+
+$rotate-map: $global-rotations !default;
+
+$rotate-responsive: false !default;
+$rotate-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin rotate-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $rotate-map {
+		.#{$rotate-namespace}#{$rotate-modifier}#{$name}#{$breakpoint-alias} {
+			transform: rotate(#{$value}deg);
+		}
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include rotate-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($rotate-responsive == true) {
+
+	@each $size, $width in $rotate-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include rotate-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

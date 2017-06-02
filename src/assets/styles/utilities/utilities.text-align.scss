@@ -1,0 +1,82 @@
+/* ==========================================================================
+   #TEXT-ALIGN
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$text-align-namespace: $global-namespace-utilities + '' !default;
+$text-align-modifier: '' !default;
+
+$text-align-map: (
+	'left': left,
+	'right': right,
+	'center': center,
+	'justify': justify
+) !default;
+
+$text-align-responsive: false !default;
+$text-align-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin text-align-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $text-align-map {
+
+		.#{$text-align-namespace}#{$text-align-modifier}#{$name}#{$breakpoint-alias} {
+			text-align: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include text-align-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($text-align-responsive == true) {
+
+	@each $size, $width in $text-align-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include text-align-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

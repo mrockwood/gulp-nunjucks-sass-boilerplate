@@ -1,0 +1,77 @@
+/* ==========================================================================
+   #BACKGROUND-COLOR
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$background-color-namespace: $global-namespace-utilities + 'background' !default;
+$background-color-modifier: $global-separator-modifier !default;
+
+$background-color-map: $colors !default;
+
+$background-color-responsive: false !default;
+$background-color-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin background-color-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $background-color-map {
+
+		.#{$background-color-namespace}#{$background-color-modifier}#{$name}#{$breakpoint-alias} {
+			background-color: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include background-color-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($background-color-responsive == true) {
+
+	@each $size, $width in $background-color-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include background-color-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

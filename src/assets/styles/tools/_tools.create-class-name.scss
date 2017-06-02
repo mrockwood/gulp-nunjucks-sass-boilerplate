@@ -1,0 +1,20 @@
+@import "tools.escape-numerator";
+
+@function create-class-name($style, $numerator, $denominator, $namespace, $divider, $breakpoint-alias) {
+
+	$class-name: null;
+
+	@if $style == 'fraction' or $style == 'fragment' {
+		// Set delimiter as slash or text
+		$delimiter: if($style == 'fraction', \/, -of-);
+		$class-name: #{$namespace}#{$divider}#{escape-numerator($numerator, $namespace)}#{$delimiter}#{$denominator}#{$breakpoint-alias};
+	} @else {
+		@if $namespace == '' {
+			@error "Percentage value class names require a namespace to be set (see $namespace). Selective escaping (e.g. the 5 of 50) cannot be done.";
+		}
+		$class-product: floor(($numerator / $denominator) * 100);
+		$class-name: #{$namespace}#{$divider}#{$class-product}#{$breakpoint-alias};
+	}
+
+	@return $class-name;
+}

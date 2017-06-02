@@ -1,0 +1,91 @@
+/* ==========================================================================
+   #OPACITY
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$opacity-namespace: $global-namespace-utilities + 'opacity' !default;
+$opacity-modifier: $global-separator-modifier !default;
+
+$opacity-map: (
+	'0': 0,
+	'025': .025,
+	'05': .05,
+	'10': .1,
+	'20': .2,
+	'30': .3,
+	'40': .4,
+	'50': .5,
+	'60': .6,
+	'70': .7,
+	'80': .8,
+	'90': .9,
+	'100': 1
+) !default;
+
+$opacity-responsive: false !default;
+$opacity-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin opacity-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $opacity-map {
+
+		.#{$opacity-namespace}#{$opacity-modifier}#{$name}#{$breakpoint-alias} {
+			opacity: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include opacity-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($opacity-responsive == true) {
+
+	@each $size, $width in $opacity-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include opacity-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

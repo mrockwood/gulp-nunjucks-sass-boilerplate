@@ -1,0 +1,92 @@
+/* ==========================================================================
+   #OVERFLOW
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$overflow-namespace: $global-namespace-utilities + 'overflow' !default;
+$overflow-x-namespace: $global-namespace-utilities + 'overflow-x' !default;
+$overflow-y-namespace: $global-namespace-utilities + 'overflow-y' !default;
+$overflow-modifier: $global-separator-modifier !default;
+
+$overflow-map: (
+	'visible': visible,
+	'hidden': hidden,
+	'scroll': scroll,
+	'auto': auto
+) !default;
+
+$overflow-responsive: false !default;
+$overflow-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin overflow-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $overflow-map {
+
+		.#{$overflow-namespace}#{$overflow-modifier}#{$name}#{$breakpoint-alias} {
+			overflow: $value !important;
+		}
+
+		.#{$overflow-x-namespace}#{$overflow-modifier}#{$name}#{$breakpoint-alias} {
+			overflow-x: $value !important;
+		}
+
+		.#{$overflow-y-namespace}#{$overflow-modifier}#{$name}#{$breakpoint-alias} {
+			overflow-y: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include overflow-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($overflow-responsive == true) {
+
+	@each $size, $width in $overflow-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include overflow-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

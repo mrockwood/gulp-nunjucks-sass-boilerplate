@@ -1,0 +1,133 @@
+/* ==========================================================================
+   #WIDTH
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.create-class-name";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$width-namespace: $global-namespace-layouts + 'width' !default;
+$width-modifier: $global-separator-modifier !default;
+$width-expand-name: 'expand' !default;
+$width-shrink-name: 'shrink' !default;
+
+$width-delimiter-style: $global-delimiter-style !default;
+
+$width-map: $global-sizing !default;
+
+$width-responsive: true !default;
+$width-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin width-classes($widths, $breakpoint-alias: null) {
+
+	.#{$width-namespace}#{$width-modifier}#{$width-expand-name}#{$breakpoint-alias} {
+		flex: 1;
+		min-width: 0;
+		flex-basis: 1px;
+		width: auto;
+	}
+
+	.#{$width-namespace}#{$width-modifier}#{$width-shrink-name}#{$breakpoint-alias} {
+		flex: 0 1 auto;
+		width: auto;
+	}
+
+	// Initialise an empty utility map that will eventually contain all our classes
+	$pseudo-class-map: ();
+
+	// Loop widths
+	@each $denominator in $widths {
+
+		// If 1=1, 2=2, 3=3; @for will skip over so create 1/1 class manually
+		@if ($denominator == 1) {
+
+			// Create 1/1 class
+			$class-name: create-class-name($width-delimiter-style, 1, 1, $width-namespace, $width-modifier, $breakpoint-alias);
+			.#{$class-name} {
+				width: 100%;
+			}
+
+		} @else {
+
+			// Loop widths as fractions
+			@for $numerator from 1 to $denominator {
+
+				// Create class name and set width value
+				$class-name: create-class-name($width-delimiter-style, $numerator, $denominator, $width-namespace, $width-modifier, $breakpoint-alias);
+				$width-value: percentage($numerator / $denominator);
+
+				// Is this width already in our utility map?
+				$duplicate: map-get($pseudo-class-map, $width-value);
+
+				// Create width class
+				.#{$class-name} {
+
+					// If this width is in utility map, @extend the duplicate, else create a new one
+					@if $duplicate {
+						@extend .#{$duplicate};
+					} @else {
+						width: $width-value;
+					}
+				}
+
+				// Add this class to utility map
+				$add-class: ($width-value: $class-name);
+				$pseudo-class-map: map-merge($pseudo-class-map, $add-class);
+			}
+
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include width-classes($width-map);
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($width-responsive == true) {
+
+	@each $size, $width in $width-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include width-classes($width-map, #{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

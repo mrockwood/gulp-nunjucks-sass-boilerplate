@@ -1,0 +1,80 @@
+/* ==========================================================================
+   #FONT-WEIGHT
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$font-weight-namespace: $global-namespace-utilities + '' !default;
+$font-weight-modifier: '' !default;
+
+$font-weight-map: (
+	'regular': $text-font-weight,
+	'bold': $text-font-weight-heavy
+) !default;
+
+$font-weight-responsive: false !default;
+$font-weight-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin font-weight-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $font-weight-map {
+
+		.#{$font-weight-namespace}#{$font-weight-modifier}#{$name}#{$breakpoint-alias} {
+			font-weight: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include font-weight-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($font-weight-responsive == true) {
+
+	@each $size, $width in $font-weight-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include font-weight-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

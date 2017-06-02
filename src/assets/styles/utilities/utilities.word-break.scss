@@ -1,0 +1,81 @@
+/* ==========================================================================
+   #WORD-BREAK
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$word-break-namespace: $global-namespace-utilities + 'word-break' !default;
+$word-break-modifier: $global-separator-modifier !default;
+
+$word-break-map: (
+	'normal': normal,
+	'wrap': break-all,
+	'nowrap': keep-all
+) !default;
+
+$word-break-responsive: false !default;
+$word-break-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin word-break-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $word-break-map {
+
+		.#{$word-break-namespace}#{$word-break-modifier}#{$name}#{$breakpoint-alias} {
+			word-break: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include word-break-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($word-break-responsive == true) {
+
+	@each $size, $width in $word-break-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include word-break-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

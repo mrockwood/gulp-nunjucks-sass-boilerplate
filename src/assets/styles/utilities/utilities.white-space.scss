@@ -1,0 +1,81 @@
+/* ==========================================================================
+   #WHITE-SPACE
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$white-space-namespace: $global-namespace-utilities + 'white-space' !default;
+$white-space-modifier: $global-separator-modifier !default;
+
+$white-space-map: (
+	'normal': normal,
+	'nowrap': nowrap,
+	'pre': pre
+) !default;
+
+$white-space-responsive: false !default;
+$white-space-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin white-space-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $white-space-map {
+
+		.#{$white-space-namespace}#{$white-space-modifier}#{$name}#{$breakpoint-alias} {
+			white-space: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include white-space-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($white-space-responsive == true) {
+
+	@each $size, $width in $white-space-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include white-space-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

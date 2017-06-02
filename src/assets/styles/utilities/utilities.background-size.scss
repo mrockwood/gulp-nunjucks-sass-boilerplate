@@ -1,0 +1,77 @@
+/* ==========================================================================
+   #BACKGROUND-SIZE
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$background-size-namespace: $global-namespace-utilities + 'background' !default;
+$background-size-modifier: $global-separator-modifier !default;
+
+$background-size-map: $global-background-sizes !default;
+
+$background-size-responsive: false !default;
+$background-size-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin background-size-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $background-size-map {
+
+		.#{$background-position-namespace}#{$background-size-modifier}#{$name}#{$breakpoint-alias} {
+			background-size: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include background-size-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($background-size-responsive == true) {
+
+	@each $size, $width in $background-size-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include background-size-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

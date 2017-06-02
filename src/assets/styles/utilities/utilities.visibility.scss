@@ -1,0 +1,98 @@
+/* ==========================================================================
+   #VISIBILITY
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$visibility-namespace: $global-namespace-utilities + 'visuallyhidden' !default;
+$visibility-modifier: $global-separator-modifier !default;
+$visibility-focus-name: 'focusable' !default;
+
+$visibility-responsive: false !default;
+$visibility-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin visibility($breakpoint-alias: null) {
+
+	/**
+	 * Text that is hidden but accessible
+	 * Ref: http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+	 */
+
+	// hide visually, but available for screenreaders
+	.#{$visibility-namespace} {
+		position: absolute;
+		margin: -1px;
+		padding: 0;
+		height: 1px;
+		width: 1px;
+		border: 0;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+	}
+
+
+	// extends the .visuallyhidden class to allow the element to
+	// be focusable when navigated to via the keyboard
+	.#{$visibility-namespace}#{$visibility-modifier}#{$visibility-focus-name}:active,
+	.#{$visibility-namespace}#{$visibility-modifier}#{$visibility-focus-name}:focus {
+		position: static;
+		margin: 0;
+		width: auto;
+		height: auto;
+		overflow: visible;
+		clip: auto;
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include visibility;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($visibility-responsive == true) {
+
+	@each $size, $width in $breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include visibility(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

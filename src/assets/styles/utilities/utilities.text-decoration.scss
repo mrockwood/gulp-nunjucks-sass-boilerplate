@@ -1,0 +1,81 @@
+/* ==========================================================================
+   #TEXT-DECORATION
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$text-decoration-namespace: $global-namespace-utilities + '' !default;
+$text-decoration-modifier: '' !default;
+
+$text-decoration-map: (
+	'strike': line-through,
+	'underline': underline,
+	'no-underline': none
+) !default;
+
+$text-decoration-responsive: false !default;
+$text-decoration-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin text-decoration-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $text-decoration-map {
+
+		.#{$text-decoration-namespace}#{$text-decoration-modifier}#{$name}#{$breakpoint-alias} {
+			text-decoration: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include text-decoration-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($text-decoration-responsive == true) {
+
+	@each $size, $width in $text-decoration-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include text-decoration-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

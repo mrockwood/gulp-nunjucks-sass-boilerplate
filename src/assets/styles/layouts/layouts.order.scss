@@ -1,0 +1,76 @@
+/* ==========================================================================
+   #ORDER
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$order-namespace: $global-namespace-layouts + 'order' !default;
+$order-modifier: $global-separator-modifier !default;
+
+$order-map: $global-ordering !default;
+
+$order-responsive: true !default;
+$order-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin order-classes($breakpoint-alias: null) {
+
+	// Default: .l-order--first
+	@each $name, $value in $order-map {
+		.#{$order-namespace}#{$order-modifier}#{$name}#{$breakpoint-alias} {
+			order: $value;
+		}
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include order-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($order-responsive == true) {
+
+	@each $size, $width in $order-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include order-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

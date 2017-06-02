@@ -1,0 +1,77 @@
+/* ==========================================================================
+   #BORDER-COLOR
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$border-color-namespace: $global-namespace-utilities + 'border' !default;
+$border-color-modifier: $global-separator-modifier !default;
+
+$border-color-map: $colors !default;
+
+$border-color-responsive: false !default;
+$border-color-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin border-color-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $border-color-map {
+
+		.#{$border-color-namespace}#{$border-color-modifier}#{$name}#{$breakpoint-alias} {
+			border-color: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include border-color-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($border-color-responsive == true) {
+
+	@each $size, $width in $border-color-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include border-color-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

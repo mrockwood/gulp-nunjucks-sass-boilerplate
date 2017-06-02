@@ -1,0 +1,120 @@
+/* ==========================================================================
+   #HEIGHT
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.create-class-name";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$height-namespace: $global-namespace-layouts + 'height' !default;
+$height-modifier: $global-separator-modifier !default;
+
+$height-delimiter-style: $global-delimiter-style !default;
+
+$height-map: $global-sizing !default;
+
+$height-responsive: true !default;
+$height-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin height-classes($heights, $breakpoint-alias: null) {
+
+	// Initialise an empty utility map that will eventually contain all our classes
+	$pseudo-class-map: ();
+
+	// Loop heights
+	@each $denominator in $heights {
+
+		// If 1=1, 2=2, 3=3; @for will skip over so create 1/1 class manually
+		@if ($denominator == 1) {
+
+			// Create 1/1 class
+			$global-name: create-class-name($height-delimiter-style, 1, 1, $height-namespace, $height-modifier, $breakpoint-alias);
+			.#{$global-name} {
+				height: 100%;
+			}
+
+		} @else {
+
+			// Loop heights as fractions
+			@for $numerator from 1 to $denominator {
+
+				// Create class name and set height value
+				$global-name: create-class-name($height-delimiter-style, $numerator, $denominator, $height-namespace, $height-modifier, $breakpoint-alias);
+				$height-value: percentage($numerator / $denominator);
+
+				// Is this height already in our utility map?
+				$duplicate: map-get($pseudo-class-map, $height-value);
+
+				// Create height class
+				.#{$global-name} {
+
+					// If this height is in utility map, @extend the duplicate, else create a new one
+					@if $duplicate {
+						@extend .#{$duplicate};
+					} @else {
+						height: $height-value;
+					}
+				}
+
+				// Add this class to utility map
+				$add-class: ($height-value: $global-name);
+				$pseudo-class-map: map-merge($pseudo-class-map, $add-class);
+
+			}
+
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include height-classes($height-map);
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($height-responsive == true) {
+
+	@each $size, $width in $height-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include height-classes($height-map, #{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

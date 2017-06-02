@@ -1,0 +1,109 @@
+/* ==========================================================================
+   #BORDER
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$border-namespace: $global-namespace-utilities + 'border' !default;
+$border-modifier: $global-separator-modifier !default;
+
+$border-map: (
+	'all': (
+		side: '',
+		border-style: $global-border-style,
+		border-width: $global-border-width
+	),
+	'top': (
+		side: '-top',
+		border-style: $global-border-style,
+		border-width: $global-border-width
+	),
+	'right': (
+		side: '-right',
+		border-style: $global-border-style,
+		border-width: $global-border-width
+	),
+	'bottom': (
+		side: '-bottom',
+		border-style: $global-border-style,
+		border-width: $global-border-width
+	),
+	'left': (
+		side: '-left',
+		border-style: $global-border-style,
+		border-width: $global-border-width
+	),
+	'none': (
+		side: '',
+		border-style: none,
+		border-width: 0
+	),
+) !default;
+
+$border-responsive: false !default;
+$border-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin border-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $border-map {
+
+		.#{$border-namespace}#{$border-modifier}#{$name}#{$breakpoint-alias} {
+			border#{map-get($value, side)}-style: map-get($value, border-style) !important;
+			border#{map-get($value, side)}-width: map-get($value, border-width) !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include border-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($border-responsive == true) {
+
+	@each $size, $width in $border-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include border-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

@@ -1,0 +1,77 @@
+/* ==========================================================================
+   #BOX-SHADOW
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$box-shadow-namespace: $global-namespace-utilities + 'box-shadow' !default;
+$box-shadow-modifier: $global-separator-modifier !default;
+
+$box-shadow-map: $global-box-shadows !default;
+
+$box-shadow-responsive: false !default;
+$box-shadow-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin box-shadow-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $box-shadow-map {
+
+		.#{$box-shadow-namespace}#{$box-shadow-modifier}#{$name}#{$breakpoint-alias} {
+			box-shadow: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include box-shadow-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($box-shadow-responsive == true) {
+
+	@each $size, $width in $box-shadow-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include box-shadow-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

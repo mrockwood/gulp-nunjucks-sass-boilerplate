@@ -1,0 +1,94 @@
+/* ==========================================================================
+   #CONTAINER
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$container-namespace: $global-namespace-layouts + 'container' !default;
+$container-modifier: $global-separator-modifier !default;
+
+$container-map: $global-breakpoints !default;
+
+$container-responsive: true !default;
+$container-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin container-classes($breakpoint-alias: null) {
+
+	/**
+	 * 1. Set box sizing to `content-box` so the max-width is unaffected by padding.
+	 * 2. Center
+	 */
+	.#{$container-namespace}#{$breakpoint-alias} {
+		box-sizing: content-box; /* [1] */
+		margin-left: auto; /* [2] */
+		margin-right: auto; /* [2] */
+		padding-left: $global-spacing-default;
+		padding-right: $global-spacing-default;
+	}
+
+	@supports (display: flex) {
+		.#{$container-namespace}#{$breakpoint-alias} {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+	@each $size, $width in $container-map {
+		.#{$container-namespace}#{$container-modifier}#{$size}#{$breakpoint-alias} {
+			max-width: $width;
+		}
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include container-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($container-responsive == true) {
+
+	@each $size, $width in $container-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include container-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

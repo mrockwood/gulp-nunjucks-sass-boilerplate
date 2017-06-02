@@ -1,0 +1,101 @@
+/* ==========================================================================
+   #COLUMN
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$column-namespace: $global-namespace-layouts + 'column' !default;
+$column-element: $global-separator-element !default;
+$column-modifier: $global-separator-modifier !default;
+$column-divider-name: 'divider' !default;
+$column-span-name: 'span' !default;
+
+$column-gutter: $global-spacing-default;
+$column-rule: $global-border-width $global-border-style $global-border-color;
+
+$column-map: $global-column-counts !default;
+
+$column-responsive: true !default;
+$column-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin column-classes($breakpoint-alias: null) {
+
+	// Default: .l-column
+	.#{$column-namespace}#{$breakpoint-alias} {
+		column-gap: $column-gutter;
+	}
+
+	// Default: .l-column--{n}
+	@each $name, $value in $column-map {
+		.#{$column-namespace}#{$column-modifier}#{$name}#{$breakpoint-alias} {
+			column-count: $value;
+		}
+	}
+
+	// Default: .l-column--divider
+	.#{$column-namespace}#{$column-modifier}#{$column-divider-name}#{$breakpoint-alias} {
+		column-rule: $column-rule;
+		column-gap: ($column-gutter * 2);
+	}
+
+	/**
+	 * 1. Column span is not yet supported in Firefox.
+	 */
+	// Default: .l-column__span
+	.#{$column-namespace}#{$column-element}#{$column-span-name}#{$breakpoint-alias} {
+		column-span: all; /* [1] */
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include column-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($column-responsive == true) {
+
+	@each $size, $width in $column-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include column-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

@@ -1,0 +1,77 @@
+/* ==========================================================================
+   #BORDER-STYLE
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$border-style-namespace: $global-namespace-utilities + 'border' !default;
+$border-style-modifier: $global-separator-modifier !default;
+
+$border-style-map: $global-border-styles !default;
+
+$border-style-responsive: false !default;
+$border-style-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin border-style-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $border-style-map {
+
+		.#{$border-style-namespace}#{$border-style-modifier}#{$name}#{$breakpoint-alias} {
+			border-style: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include border-style-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($border-style-responsive == true) {
+
+	@each $size, $width in $border-style-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include border-style-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

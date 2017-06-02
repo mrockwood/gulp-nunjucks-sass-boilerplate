@@ -1,0 +1,111 @@
+/* ==========================================================================
+   #PUSH
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.create-class-name";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$push-namespace: $global-namespace-layouts + 'push' !default;
+$push-modifier: $global-separator-modifier !default;
+
+$push-delimiter-style: $global-delimiter-style !default;
+
+$push-map: $global-sizing !default;
+
+$push-responsive: true !default;
+$push-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin push-classes($widths, $breakpoint-alias: null) {
+
+	// Initialise an empty utility map that will eventually contain all our classes
+	$pseudo-class-map: ();
+
+	// Loop widths
+	@each $denominator in $widths {
+
+		// If 1=1, 2=2, 3=3; @for will skip over it
+		@if ($denominator != 1) {
+
+			// Loop widths as fractions
+			@for $numerator from 1 to $denominator {
+
+				// Create class name and set width value
+				$class-name: create-class-name($push-delimiter-style, $numerator, $denominator, $push-namespace, $push-modifier, $breakpoint-alias);
+				$width-value: percentage($numerator / $denominator);
+
+				// Is this width already in our utility map?
+				$duplicate: map-get($pseudo-class-map, $width-value);
+
+				// Create width class
+				.#{$class-name} {
+
+					// If this width is in utility map, @extend the duplicate, else create a new one
+					@if $duplicate {
+						@extend .#{$duplicate};
+					} @else {
+						margin-left: $width-value;
+					}
+				}
+
+				// Add this class to utility map
+				$add-class: ($width-value: $class-name);
+				$pseudo-class-map: map-merge($pseudo-class-map, $add-class);
+			}
+
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include push-classes($push-map);
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($push-responsive == true) {
+
+	@each $size, $width in $push-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include push-classes($push-map, #{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

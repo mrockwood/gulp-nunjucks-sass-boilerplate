@@ -1,0 +1,82 @@
+/* ==========================================================================
+   #LETTER-SPACING
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$letter-spacing-namespace: $global-namespace-utilities + 'tracking' !default;
+$letter-spacing-modifier: $global-separator-modifier !default;
+
+$letter-spacing-map: (
+	'tight': -.05em,
+	'none': 0em,
+	'slight': .1em,
+	'mega': .25em
+) !default;
+
+$letter-spacing-responsive: false !default;
+$letter-spacing-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin letter-spacing-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $letter-spacing-map {
+
+		.#{$letter-spacing-namespace}#{$letter-spacing-modifier}#{$name}#{$breakpoint-alias} {
+			letter-spacing: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include letter-spacing-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($letter-spacing-responsive == true) {
+
+	@each $size, $width in $letter-spacing-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include letter-spacing-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

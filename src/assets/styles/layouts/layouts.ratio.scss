@@ -1,0 +1,139 @@
+/* ==========================================================================
+   #RATIO
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$ratio-namespace: $global-namespace-layouts + 'ratio' !default;
+$ratio-element: $global-separator-element !default;
+$ratio-modifier: $global-separator-modifier !default;
+$ratio-content-name: 'content' !default;
+
+$ratio-map: $global-ratios !default;
+
+$ratio-responsive: false !default;
+$ratio-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin ratio-classes($breakpoint-alias: null) {
+
+	/**
+	 * Create ratio-bound content blocks, to keep media (e.g. images, videos) in
+	 * their correct aspect ratios.
+	 *
+	 * http://alistapart.com/article/creating-intrinsic-ratios-for-video
+	 *
+	 * 1. Default cropping is a 1:1 ratio (i.e. a perfect square).
+	 */
+
+	.#{$ratio-namespace}#{$breakpoint-alias} {
+		display: block;
+		overflow: hidden;
+		position: relative;
+
+		&:before {
+			content: "";
+			display: block;
+			padding-bottom: 100%; /* [1] */
+			width: 100%;
+		}
+	}
+
+
+	.#{$ratio-namespace}#{$ratio-element}#{$ratio-content-name}#{$breakpoint-alias} {
+		bottom: 0;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+
+
+
+	/* stylelint-disable */
+
+	/* Ratio variants.
+	   ========================================================================== */
+
+	/**
+	 * Generate a series of ratio classes to be used like so:
+	 *
+	 *   <div class="l-ratio  l-ratio--16:9">
+	 *
+	 */
+
+	@each $ratio in $ratio-map {
+
+		@each $antecedent, $consequent in $ratio {
+
+			@if (type-of($antecedent) != number) {
+				@error "`#{$antecedent}` needs to be a number."
+			}
+
+			@if (type-of($consequent) != number) {
+				@error "`#{$consequent}` needs to be a number."
+			}
+
+			.#{$ratio-namespace}#{$ratio-modifier}#{$antecedent}\:#{$consequent}#{$breakpoint-alias}:before {
+				padding-bottom: ($consequent/$antecedent) * 100%;
+			}
+
+		}
+
+	}
+
+	/* stylelint-enable */
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include ratio-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($ratio-responsive == true) {
+
+	@each $size, $width in $ratio-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include ratio-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

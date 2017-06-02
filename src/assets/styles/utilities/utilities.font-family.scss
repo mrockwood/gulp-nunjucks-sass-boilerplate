@@ -1,0 +1,81 @@
+/* ==========================================================================
+   #FONT-FAMILY
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$font-family-namespace: $global-namespace-utilities + 'font' !default;
+$font-family-modifier: $global-separator-modifier !default;
+
+$font-family-map: $global-font-families !default;
+
+$font-family-serif-name: $global-separator-modifier + 'serif' !default;
+$font-family-sans-serif-name: $global-separator-modifier + 'sans-serif' !default;
+$font-family-monospace-name: $global-separator-modifier + 'monospace' !default;
+
+$font-family-responsive: false !default;
+$font-family-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin font-family-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $font-family-map {
+
+		.#{$font-family-namespace}#{$font-family-modifier}#{$name}#{$breakpoint-alias} {
+			font-family: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include font-family-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($font-family-responsive == true) {
+
+	@each $size, $width in $font-family-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include font-family-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

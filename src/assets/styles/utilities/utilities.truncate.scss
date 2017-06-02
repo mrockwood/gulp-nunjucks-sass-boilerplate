@@ -1,0 +1,73 @@
+/* ==========================================================================
+   #TRUNCATE
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$truncate-namespace: $global-namespace-utilities + 'truncate' !default;
+
+$truncate-responsive: false !default;
+$truncate-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin truncate-classes($breakpoint-alias: null) {
+
+	/* Combine this class with a width to truncate text (or just leave as is to truncate at width of containing element. */
+	.#{$truncate-namespace}#{$breakpoint-alias} {
+		white-space: nowrap !important;
+		overflow: hidden !important;
+		text-overflow: ellipsis !important;
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include truncate-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($truncate-responsive == true) {
+
+	@each $size, $width in $truncate-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include truncate-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

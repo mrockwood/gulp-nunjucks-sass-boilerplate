@@ -1,0 +1,82 @@
+/* ==========================================================================
+   #TEXT-TRANSFORM
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$text-transform-namespace: $global-namespace-utilities + '' !default;
+$text-transform-modifier: '' !default;
+
+$text-transform-map: (
+	'capitalize': capitalize,
+	'lowercase': lowercase,
+	'uppercase': uppercase,
+	'no-transform': none
+) !default;
+
+$text-transform-responsive: false !default;
+$text-transform-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin text-transform-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $text-transform-map {
+
+		.#{$text-transform-namespace}#{$text-transform-modifier}#{$name}#{$breakpoint-alias} {
+			text-transform: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include text-transform-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($text-transform-responsive == true) {
+
+	@each $size, $width in $text-transform-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include text-transform-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

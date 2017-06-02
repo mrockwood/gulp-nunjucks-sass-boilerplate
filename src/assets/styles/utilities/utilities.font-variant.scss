@@ -1,0 +1,83 @@
+/* ==========================================================================
+   #FONT-VARIANT
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$font-variant-namespace: $global-namespace-utilities + 'font' !default;
+$font-variant-modifier: $global-separator-modifier !default;
+
+$font-variant-map: (
+	'normal-caps': normal,
+	'small-caps': small-caps
+) !default;
+
+$font-variant-normal-name: $global-separator-modifier + 'normal-caps' !default;
+$font-variant-italic-name: $global-separator-modifier + 'small-caps' !default;
+
+$font-variant-responsive: false !default;
+$font-variant-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin font-variant-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $font-variant-map {
+
+		.#{$font-variant-namespace}#{$font-variant-modifier}#{$name}#{$breakpoint-alias} {
+			font-variant: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include font-variant-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($font-variant-responsive == true) {
+
+	@each $size, $width in $font-variant-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include font-variant-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

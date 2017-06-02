@@ -1,0 +1,77 @@
+/* ==========================================================================
+   #BORDER-WIDTH
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$border-width-namespace: $global-namespace-utilities + 'border' !default;
+$border-width-modifier: $global-separator-modifier !default;
+
+$border-width-map: $global-border-widths !default;
+
+$utilities-border-width-responsive: false !default;
+$utilities-border-width-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin utilities-border-width-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $border-width-map {
+
+		.#{$border-width-namespace}#{$border-width-modifier}#{$name}#{$breakpoint-alias} {
+			border-width: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include utilities-border-width-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($utilities-border-width-responsive == true) {
+
+	@each $size, $width in $utilities-border-width-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include utilities-border-width-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

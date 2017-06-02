@@ -1,0 +1,79 @@
+/* ==========================================================================
+   #FONT-STYLE
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$font-style-namespace: $global-namespace-utilities + 'font' !default;
+
+$font-style-map: (
+	'normal': normal,
+	'italic': italic
+) !default;
+
+$font-style-responsive: false !default;
+$font-style-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin font-style-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $font-style-map {
+
+		.#{$font-style-namespace}#{$global-separator-modifier}#{$name}#{$breakpoint-alias} {
+			font-style: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include font-style-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($font-style-responsive == true) {
+
+	@each $size, $width in $font-style-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include font-style-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

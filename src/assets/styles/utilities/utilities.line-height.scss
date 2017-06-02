@@ -1,0 +1,81 @@
+/* ==========================================================================
+   #LINE-HEIGHT
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$line-height-namespace: $global-namespace-utilities + 'line' !default;
+$line-height-modifier: $global-separator-modifier !default;
+
+$line-height-map: (
+	'solid': 1,
+	'title': 1.25,
+	'copy': 1.5
+) !default;
+
+$line-height-responsive: false !default;
+$line-height-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin line-height-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $line-height-map {
+
+		.#{$line-height-namespace}#{$line-height-modifier}#{$name}#{$breakpoint-alias} {
+			line-height: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include line-height-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($line-height-responsive == true) {
+
+	@each $size, $width in $line-height-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include line-height-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

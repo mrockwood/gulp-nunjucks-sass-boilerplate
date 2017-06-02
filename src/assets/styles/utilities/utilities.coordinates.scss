@@ -1,0 +1,101 @@
+/* ==========================================================================
+   #COORDINATES
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$coordinates-namespace: $global-namespace-utilities + '' !default;
+$coordinates-modifier: $global-separator-modifier !default;
+$coordinates-cover-name: 'cover' !default;
+$coordinates-top-name: 'top' !default;
+$coordinates-right-name: 'right' !default;
+$coordinates-bottom-name: 'bottom' !default;
+$coordinates-left-name: 'left' !default;
+
+$coordinates-map: $global-spacing;
+
+$coordinates-responsive: false !default;
+$coordinates-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin coordinates-classes($breakpoint-alias: null) {
+
+	.#{$coordinates-namespace}#{$coordinates-cover-name}#{$breakpoint-alias} {
+		bottom: 0;
+		left: 0;
+		right: 0;
+		top: 0;
+	}
+
+	@each $size, $value in $coordinates-map {
+
+		.#{$coordinates-namespace}#{$coordinates-top-name}#{$coordinates-modifier}#{$size}#{$breakpoint-alias} {
+			top: #{$value} !important;
+		}
+
+		.#{$coordinates-namespace}#{$coordinates-right-name}#{$coordinates-modifier}#{$size}#{$breakpoint-alias} {
+			right: #{$value} !important;
+		}
+
+		.#{$coordinates-namespace}#{$coordinates-bottom-name}#{$coordinates-modifier}#{$size}#{$breakpoint-alias} {
+			bottom: #{$value} !important;
+		}
+
+		.#{$coordinates-namespace}#{$coordinates-left-name}#{$coordinates-modifier}#{$size}#{$breakpoint-alias} {
+			left: #{$value} !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include coordinates-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($coordinates-responsive == true) {
+
+	@each $size, $width in $coordinates-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include coordinates-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

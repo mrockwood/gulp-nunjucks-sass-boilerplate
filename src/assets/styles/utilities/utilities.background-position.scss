@@ -1,0 +1,78 @@
+/* ==========================================================================
+   #BACKGROUND-POSITION
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$background-position-namespace: $global-namespace-utilities + 'background' !default;
+$background-position-modifier: $global-separator-modifier !default;
+
+$background-position-map: $global-background-positions !default;
+
+$background-position-responsive: false !default;
+$background-position-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin background-position-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $background-position-map {
+
+		.#{$background-position-namespace}#{$background-position-modifier}#{$name}#{$breakpoint-alias} {
+			background-repeat: no-repeat !important;
+			background-position: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include background-position-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($background-position-responsive == true) {
+
+	@each $size, $width in $background-position-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include background-position-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

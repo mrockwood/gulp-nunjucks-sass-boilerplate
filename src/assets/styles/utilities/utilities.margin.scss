@@ -1,0 +1,110 @@
+/* ==========================================================================
+   #MARGIN
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$margin-namespace: $global-namespace-utilities + 'margin' !default;
+$margin-modifier: $global-separator-modifier !default;
+$margin-all-name: '' !default;
+$margin-horizontal-name: '-horizontal' !default;
+$margin-vertical-name: '-vertical' !default;
+$margin-top-name: '-top' !default;
+$margin-right-name: '-right' !default;
+$margin-bottom-name: '-bottom' !default;
+$margin-left-name: '-left' !default;
+
+$margin-map: $global-spacing !default;
+
+$margin-responsive: false !default;
+$margin-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin margin-classes($breakpoint-alias: null) {
+
+	@each $size, $value in $margin-map {
+
+		.#{$margin-namespace}#{$margin-all-name}#{$margin-modifier}#{$size}#{$breakpoint-alias} {
+			margin: #{$value} !important;
+		}
+
+		.#{$margin-namespace}#{$margin-horizontal-name}#{$margin-modifier}#{$size}#{$breakpoint-alias} {
+			margin-left: #{$value} !important;
+			margin-right: #{$value} !important;
+		}
+
+		.#{$margin-namespace}#{$margin-vertical-name}#{$margin-modifier}#{$size}#{$breakpoint-alias} {
+			margin-bottom: #{$value} !important;
+			margin-top: #{$value} !important;
+		}
+
+		.#{$margin-namespace}#{$margin-top-name}#{$margin-modifier}#{$size}#{$breakpoint-alias} {
+			margin-top: #{$value} !important;
+		}
+
+		.#{$margin-namespace}#{$margin-right-name}#{$margin-modifier}#{$size}#{$breakpoint-alias} {
+			margin-right: #{$value} !important;
+		}
+
+		.#{$margin-namespace}#{$margin-bottom-name}#{$margin-modifier}#{$size}#{$breakpoint-alias} {
+			margin-bottom: #{$value} !important;
+		}
+
+		.#{$margin-namespace}#{$margin-left-name}#{$margin-modifier}#{$size}#{$breakpoint-alias} {
+			margin-left: #{$value} !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include margin-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($margin-responsive == true) {
+
+	@each $size, $width in $margin-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include margin-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

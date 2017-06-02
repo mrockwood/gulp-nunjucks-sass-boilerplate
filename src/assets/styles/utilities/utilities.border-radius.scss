@@ -1,0 +1,77 @@
+/* ==========================================================================
+   #BORDER-RADIUS
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$border-radius-namespace: $global-namespace-utilities + 'border' !default;
+$border-radius-modifier: $global-separator-modifier !default;
+
+$border-radius-map: $global-radii !default;
+
+$border-radius-responsive: false !default;
+$border-radius-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin border-radius-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $border-radius-map {
+
+		.#{$border-radius-namespace}#{$border-radius-modifier}#{$name}#{$breakpoint-alias} {
+			border-radius: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include border-radius-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($border-radius-responsive == true) {
+
+	@each $size, $width in $border-radius-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include border-radius-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

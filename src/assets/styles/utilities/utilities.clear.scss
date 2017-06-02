@@ -1,0 +1,103 @@
+/* ==========================================================================
+   #CLEAR
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$clearfix-namespace: $global-namespace-utilities + 'clearfix' !default;
+$clear-namespace: $global-namespace-utilities + 'clear' !default;
+$clear-modifier: $global-separator-modifier !default;
+
+$clear-map: $global-clearing !default;
+
+$clear-responsive: false !default;
+$clear-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin clear-classes($breakpoint-alias: null) {
+
+	/* Clearfix
+	   ========================================================================== */
+
+	/**
+	 * Nicolas Gallaghers Clearfix solution
+	 * Ref: http://nicolasgallagher.com/micro-clearfix-hack/
+	 */
+
+	.#{$clearfix-namespace}#{$breakpoint-alias} {
+		*zoom: 1;
+
+		&:before,
+		&:after {
+			content: " ";
+			display: table;
+		}
+
+		&:after {
+			clear: both;
+		}
+	}
+
+	/* Clear
+	   ========================================================================== */
+
+	@each $name, $value in $clear-map {
+
+		.#{$clear-namespace}#{$clear-modifier}#{$name}#{$breakpoint-alias} {
+			clear: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include clear-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($clear-responsive == true) {
+
+	@each $size, $width in $clear-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include clear-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

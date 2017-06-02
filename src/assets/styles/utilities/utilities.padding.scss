@@ -1,0 +1,110 @@
+/* ==========================================================================
+   #PADDING
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$padding-namespace: $global-namespace-utilities + 'padding' !default;
+$padding-modifier: $global-separator-modifier !default;
+$padding-all-name: '' !default;
+$padding-horizontal-name: '-horizontal' !default;
+$padding-vertical-name: '-vertical' !default;
+$padding-top-name: '-top' !default;
+$padding-right-name: '-right' !default;
+$padding-bottom-name: '-bottom' !default;
+$padding-left-name: '-left' !default;
+
+$padding-map: $global-spacing !default;
+
+$padding-responsive: false !default;
+$padding-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin padding-classes($breakpoint-alias: null) {
+
+	@each $size, $value in $padding-map {
+
+		.#{$padding-namespace}#{$padding-all-name}#{$padding-modifier}#{$size}#{$breakpoint-alias} {
+			padding: #{$value} !important;
+		}
+
+		.#{$padding-namespace}#{$padding-horizontal-name}#{$padding-modifier}#{$size}#{$breakpoint-alias} {
+			padding-left: #{$value} !important;
+			padding-right: #{$value} !important;
+		}
+
+		.#{$padding-namespace}#{$padding-vertical-name}#{$padding-modifier}#{$size}#{$breakpoint-alias} {
+			padding-bottom: #{$value} !important;
+			padding-top: #{$value} !important;
+		}
+
+		.#{$padding-namespace}#{$padding-top-name}#{$padding-modifier}#{$size}#{$breakpoint-alias} {
+			padding-top: #{$value} !important;
+		}
+
+		.#{$padding-namespace}#{$padding-right-name}#{$padding-modifier}#{$size}#{$breakpoint-alias} {
+			padding-right: #{$value} !important;
+		}
+
+		.#{$padding-namespace}#{$padding-bottom-name}#{$padding-modifier}#{$size}#{$breakpoint-alias} {
+			padding-bottom: #{$value} !important;
+		}
+
+		.#{$padding-namespace}#{$padding-left-name}#{$padding-modifier}#{$size}#{$breakpoint-alias} {
+			padding-left: #{$value} !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include padding-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($padding-responsive == true) {
+
+	@each $size, $width in $padding-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include padding-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

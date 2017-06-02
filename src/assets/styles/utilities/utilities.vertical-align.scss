@@ -1,0 +1,84 @@
+/* ==========================================================================
+   #VERTICAL-ALIGN
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$vertical-align-namespace: $global-namespace-utilities + 'valign' !default;
+$vertical-align-modifier: $global-separator-modifier !default;
+
+$vertical-align-map: (
+	'baseline': baseline,
+	'top': top,
+	'middle': middle,
+	'bottom': bottom,
+	'text-top': text-top,
+	'text-bottom': text-bottom
+) !default;
+
+$vertical-align-responsive: false !default;
+$vertical-align-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin vertical-align-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $vertical-align-map {
+
+		.#{$vertical-align-namespace}#{$vertical-align-modifier}#{$name}#{$breakpoint-alias} {
+			vertical-align: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include vertical-align-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($vertical-align-responsive == true) {
+
+	@each $size, $width in $vertical-align-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include vertical-align-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}
