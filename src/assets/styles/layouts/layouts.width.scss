@@ -6,17 +6,6 @@
 
 
 //
-// Dependencies
-//
-
-@import "../settings/settings.global";
-@import "../tools/tools.create-class-name";
-@import "../tools/tools.media-queries";
-
-
-
-
-//
 // Options
 //
 
@@ -43,9 +32,9 @@ $width-breakpoints: $global-breakpoints !default;
 
 	.#{$width-namespace}#{$width-modifier}#{$width-expand-name}#{$breakpoint-alias} {
 		flex: 1;
-		min-width: 0;
 		flex-basis: 1px;
-		width: auto;
+		min-width: 0;
+		width: 1px;
 	}
 
 	.#{$width-namespace}#{$width-modifier}#{$width-shrink-name}#{$breakpoint-alias} {

@@ -1,0 +1,77 @@
+/* ==========================================================================
+   #Z-INDEX
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$z-index-namespace: $global-namespace-layouts + 'z' !default;
+$z-index-modifier: $global-separator-modifier !default;
+
+$z-index-map: $global-z-indexes !default;
+
+$z-index-responsive: false !default;
+$z-index-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin z-index-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $z-index-map {
+
+		.#{$z-index-namespace}#{$z-index-modifier}#{$name}#{$breakpoint-alias} {
+			z-index: $value;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include z-index-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($z-index-responsive == true) {
+
+	@each $size, $width in $z-index-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include z-index-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

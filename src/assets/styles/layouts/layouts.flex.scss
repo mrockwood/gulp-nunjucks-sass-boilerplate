@@ -1,0 +1,225 @@
+/* ==========================================================================
+   #FLEX
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$flex-namespace: $global-namespace-layouts + 'flex' !default;
+$flex-element: $global-separator-element !default;
+$flex-modifier: $global-separator-modifier !default;
+$flex-item-name: 'item' !default;
+$flex-align-left-name: 'left' !default;
+$flex-align-right-name: 'right' !default;
+$flex-align-center-name: 'center' !default;
+$flex-align-top-name: 'top' !default;
+$flex-align-middle-name: 'middle' !default;
+$flex-align-bottom-name: 'bottom' !default;
+$flex-align-around-name: 'around' !default;
+$flex-align-between-name: 'between' !default;
+$flex-reverse-name: 'reverse' !default;
+
+$flex-gutter: $global-spacing-default !default;
+
+$flex-gutter-map: $global-spacing;
+
+$flex-responsive: true !default;
+$flex-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin flex-classes($breakpoint-alias: null) {
+
+	/**
+	 * 1. Allow the flex system to be used on lists.
+	 * 2. Remove any margins and paddings that might affect the flex system.
+	 * 3. Add negative margins to compensate for `.l-flex__item` padding.
+	 * 4. Dumb IE hack
+	 */
+	.#{$flex-namespace}#{$breakpoint-alias} {
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none; /* [1] */
+		margin: 0 -#{$flex-gutter} -#{$flex-gutter} 0; /* [3] */
+		min-height: 1px; /* [4] */
+		//overflow-x: hidden; /* [4] */
+		padding: 0; /* [2] */
+
+		> * {
+			margin-top: 0;
+		}
+	}
+
+	/**
+	 * Reversed flexs allow you to structure your source in the opposite order to
+	 * how your rendered layout will appear.
+	 * Extends `.l-flex`.
+	 */
+	.#{$flex-namespace}#{$flex-modifier}#{$flex-reverse-name}#{$breakpoint-alias} {
+		flex-direction: row-reverse;
+	}
+
+	/**
+	 * Flush flexs have all the properties of regular flexs, minus any spacing.
+	 * Extends `.l-flex`.
+	 */
+	.#{$flex-namespace}#{$flex-modifier}flush#{$breakpoint-alias} {
+		margin-left: 0;
+		margin-right: 0;
+
+		> * {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+
+	/**
+	 * Align flex cells vertically (`.l-flex--bottom` or `.l-flex--middle` or `.l-flex--top`).
+	 * Extends `.l-flex`.
+	 */
+	.#{$flex-namespace}#{$flex-modifier}#{$flex-align-top-name}#{$breakpoint-alias} {
+		align-items: flex-start;
+	}
+
+	.#{$flex-namespace}#{$flex-modifier}#{$flex-align-middle-name}#{$breakpoint-alias} {
+		align-items: center;
+	}
+
+	.#{$flex-namespace}#{$flex-modifier}#{$flex-align-bottom-name}#{$breakpoint-alias} {
+		align-items: flex-end;
+	}
+
+	/**
+	 * Align flex cells horizontally (`.l-flex--left` or `.l-flex--center` or `.l-flex--right`).
+	 * Extends `.l-flex`.
+	 */
+	.#{$flex-namespace}#{$flex-modifier}#{$flex-align-left-name}#{$breakpoint-alias} {
+		justify-content: flex-start;
+	}
+
+	.#{$flex-namespace}#{$flex-modifier}#{$flex-align-center-name}#{$breakpoint-alias} {
+		justify-content: center;
+	}
+
+	.#{$flex-namespace}#{$flex-modifier}#{$flex-align-right-name}#{$breakpoint-alias} {
+		justify-content: flex-end;
+	}
+
+	.#{$flex-namespace}#{$flex-modifier}#{$flex-align-around-name}#{$breakpoint-alias} {
+		justify-content: space-around;
+	}
+
+	.#{$flex-namespace}#{$flex-modifier}#{$flex-align-between-name}#{$breakpoint-alias} {
+		justify-content: space-between;
+	}
+
+	/**
+	 * flex items/cells
+	 * 1. Required to combine fluid widths and fixed gutters.
+	 * 2. Fix for Chrome 44 bug.
+ 	 * https://code.google.com/p/chromium/issues/detail?id=506893
+	 * 3. Gutters.
+	 */
+	.#{$flex-namespace}#{$flex-element}#{$flex-item-name}#{$breakpoint-alias} {
+		box-sizing: border-box; /* [1] */
+		max-width: 100%;
+		min-width: 0; /* [2] */
+		min-height: 0; /* [2] */
+		padding: 0 $flex-gutter $flex-gutter 0; /* [3] */
+		width: 100%;
+	}
+
+	/**
+	 * Flush flex itmes have all the properties of regular flex items, minus any spacing.
+	 * Extends `.l-flex__item`.
+	 */
+	.#{$flex-namespace}#{$flex-element}#{$flex-item-name}#{$flex-modifier}flush#{$breakpoint-alias} {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	/**
+	 * flex item vertical alignment per cell.
+	 * (`.l-flex__item--bottom` or `.l-flex__item--middle` or `.l-flex__item--top`)
+	 * Extends `.l-flex__item`.
+	 */
+	.#{$flex-namespace}#{$flex-element}#{$flex-item-name}#{$flex-modifier}#{$flex-align-top-name}#{$breakpoint-alias} {
+		align-self: flex-start;
+	}
+
+	.#{$flex-namespace}#{$flex-element}#{$flex-item-name}#{$flex-modifier}#{$flex-align-middle-name}#{$breakpoint-alias} {
+		align-self: center;
+	}
+
+	.#{$flex-namespace}#{$flex-element}#{$flex-item-name}#{$flex-modifier}#{$flex-align-bottom-name}#{$breakpoint-alias} {
+		align-self: flex-end;
+	}
+
+	/**
+	 * flex item horizontal alignment per cell.
+	 * (`.l-flex__item--left` or `.l-flex__item--center` or `.l-flex__item--right`)
+	 * Extends `.l-flex__item`.
+	 */
+	.#{$flex-namespace}#{$flex-element}#{$flex-item-name}#{$flex-modifier}#{$flex-align-left-name}#{$breakpoint-alias} {
+		margin-right: auto;
+	}
+
+	.#{$flex-namespace}#{$flex-element}#{$flex-item-name}#{$flex-modifier}#{$flex-align-center-name}#{$breakpoint-alias} {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.#{$flex-namespace}#{$flex-element}#{$flex-item-name}#{$flex-modifier}#{$flex-align-right-name}#{$breakpoint-alias} {
+		margin-left: auto;
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include flex-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($flex-responsive == true) {
+
+	@each $size, $width in $flex-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include flex-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}

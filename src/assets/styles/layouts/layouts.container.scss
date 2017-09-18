@@ -38,21 +38,20 @@ $container-breakpoints: $global-breakpoints !default;
 
 	/**
 	 * 1. Set box sizing to `content-box` so the max-width is unaffected by padding.
-	 * 2. Center
+	 * 2. Center on the page
+	 * 3. Fix IE10-11 horizontal scrollbars
 	 */
 	.#{$container-namespace}#{$breakpoint-alias} {
-		box-sizing: content-box; /* [1] */
+		//box-sizing: content-box; /* [1] */
+		//display: flex;
+		//flex-direction: column;
 		margin-left: auto; /* [2] */
 		margin-right: auto; /* [2] */
+		//min-height: 1px; /* [3] */
+		overflow: hidden; /* [3] */
 		padding-left: $global-spacing-default;
 		padding-right: $global-spacing-default;
-	}
-
-	@supports (display: flex) {
-		.#{$container-namespace}#{$breakpoint-alias} {
-			display: flex;
-			flex-direction: column;
-		}
+		//width: 100%;
 	}
 
 	@each $size, $width in $container-map {

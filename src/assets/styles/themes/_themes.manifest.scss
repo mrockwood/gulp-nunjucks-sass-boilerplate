@@ -1,16 +1,20 @@
+/* ==========================================================================
+   #MANIFEST
+   This is where all of our partials are imported
+   ========================================================================== */
 
 
 
 
 //
-// Generic
+// Base
 //
 
 @import "../base/base.box-sizing";
-@import "../base/base.normalize";
-@import "../base/base.reset";
+@import "../base/base.reboot";
 @import "../base/base.print";
-@import "../base/base.shared";
+@import "../base/base.spacing";
+@import "../base/base.typography";
 
 
 
@@ -22,6 +26,7 @@
 @import "../layouts/layouts.alignment";
 @import "../layouts/layouts.column";
 @import "../layouts/layouts.container";
+@import "../layouts/layouts.flex";
 @import "../layouts/layouts.grid";
 @import "../layouts/layouts.height";
 @import "../layouts/layouts.order";
@@ -30,6 +35,7 @@
 @import "../layouts/layouts.ratio";
 @import "../layouts/layouts.rotate";
 @import "../layouts/layouts.width";
+@import "../layouts/layouts.z-index";
 
 
 

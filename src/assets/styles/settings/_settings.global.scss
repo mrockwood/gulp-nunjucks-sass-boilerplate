@@ -364,6 +364,20 @@ $global-speeds: (
 ) !default;
 
 //
+// Z Indexes
+//
+$global-z-indexes: (
+	'under': -100,
+	'0': 0,
+	'100': 100,
+	'200': 200,
+	'300': 300,
+	'400': 400,
+	'500': 500,
+	'unset': unset
+) !default;
+
+//
 // Borders
 //
 $global-border-width: 1px !default;

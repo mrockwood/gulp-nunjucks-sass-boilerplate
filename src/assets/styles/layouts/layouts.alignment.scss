@@ -9,7 +9,7 @@
 // Dependencies
 //
 
-@import "../tools/tools.alignment";
+@import "../settings/settings.global";
 @import "../tools/tools.media-queries";
 
 
@@ -26,7 +26,7 @@ $alignment-content-name: 'content' !default;
 $alignment-vertical-name: 'vertical' !default;
 $alignment-horizontal-name: 'horizontal' !default;
 
-$alignment-responsive: false !default;
+$alignment-responsive: true !default;
 $alignment-breakpoints: $global-breakpoints !default;
 
 
@@ -39,19 +39,27 @@ $alignment-breakpoints: $global-breakpoints !default;
 @mixin alignment-classes($breakpoint-alias: null) {
 
 	.#{$alignment-namespace}#{$breakpoint-alias} {
-		@include center-block;
+		position: relative;
 	}
 
 	.#{$alignment-namespace}#{$alignment-element}#{$alignment-content-name}#{$breakpoint-alias} {
-		@include center-block__content;
+		left: 50%;
+		position: absolute;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
 	}
 
 	.#{$alignment-namespace}#{$alignment-element}#{$alignment-content-name}#{$alignment-modifier}#{$alignment-vertical-name}#{$breakpoint-alias} {
-		@include center-block__content--vertical;
+		left: auto;
+		transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
 	}
 
 	.#{$alignment-namespace}#{$alignment-element}#{$alignment-content-name}#{$alignment-modifier}#{$alignment-horizontal-name}#{$breakpoint-alias} {
-		@include center-block__content--horizontal;
+		top: auto;
+		transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
 	}
 
 }
