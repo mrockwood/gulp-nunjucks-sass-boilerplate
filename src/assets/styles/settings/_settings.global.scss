@@ -474,23 +474,15 @@ $global-ratios: (
 // Rotations
 //
 $rotation-0: 0 !default;
-$rotation-45: 45 !default;
 $rotation-90: 90 !default;
-$rotation-135: 135 !default;
 $rotation-180: 180 !default;
-$rotation-225: 225 !default;
 $rotation-270: 270 !default;
-$rotation-315: 315 !default;
 
 $global-rotations: (
 	'0': $rotation-0,
-	'45': $rotation-45,
 	'90': $rotation-90,
-	'135': $rotation-135,
 	'180': $rotation-180,
-	'225': $rotation-225,
-	'270': $rotation-270,
-	'315': $rotation-315
+	'270': $rotation-270
 ) !default;
 
 //
@@ -521,12 +513,12 @@ $valign-text-top: text-top !default;
 $valign-text-bottom: text-bottom !default;
 
 $global-vertical-alignment: (
-	'baseline': baseline,
-	'top': top,
-	'middle': middle,
-	'bottom': bottom,
-	'text-top': text-top,
-	'text-bottom': text-bottom
+	'baseline': $valign-baseline,
+	'top': $valign-top,
+	'middle': $valign-middle,
+	'bottom': $valign-bottom,
+	'text-top': $valign-text-top,
+	'text-bottom': $valign-text-bottom
 ) !default;
 
 //
