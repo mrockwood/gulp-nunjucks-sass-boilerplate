@@ -22,14 +22,7 @@
 $font-size-namespace: $global-namespace-utilities + '' !default;
 $font-size-modifier: '' !default;
 
-$font-size-map: (
-	'xsmall': $text-font-size-xsmall,
-	'small': $text-font-size-small,
-	'medium': $text-font-size-medium,
-	'large': $text-font-size-large,
-	'xlarge': $text-font-size-xlarge,
-	'super': $text-font-size-super
-) !default;
+$font-size-map: $global-font-sizes !default;
 
 $font-size-responsive: false !default;
 $font-size-breakpoints: $global-breakpoints !default;

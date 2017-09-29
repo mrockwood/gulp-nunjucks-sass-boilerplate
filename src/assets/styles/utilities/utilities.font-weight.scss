@@ -22,10 +22,7 @@
 $font-weight-namespace: $global-namespace-utilities + '' !default;
 $font-weight-modifier: '' !default;
 
-$font-weight-map: (
-	'regular': $text-font-weight,
-	'bold': $text-font-weight-heavy
-) !default;
+$font-weight-map: $global-font-weights !default;
 
 $font-weight-responsive: false !default;
 $font-weight-breakpoints: $global-breakpoints !default;

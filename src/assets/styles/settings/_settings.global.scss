@@ -18,28 +18,45 @@ $global-delimiter-style: 'fraction' !default;
 //
 // Breakpoints
 //
+$breakpoint-xsmall: 20em !default;
+$breakpoint-small: 30em !default;
+$breakpoint-medium: 48em !default;
+$breakpoint-large: 64em !default;
+$breakpoint-xlarge: 78em !default;
+$breakpoint-super: 116em !default;
+
 $global-breakpoints: (
-	'xsmall': 20em,
-	'small': 30em,
-	'medium': 48em,
-	'large': 64em,
-	'xlarge': 78em,
-	'super': 116em
+	'xsmall': $breakpoint-xsmall,
+	'small': $breakpoint-small,
+	'medium': $breakpoint-medium,
+	'large': $breakpoint-large,
+	'xlarge': $breakpoint-xlarge,
+	'super': $breakpoint-super
 ) !default;
 
 //
 // Spacing
 //
+$spacing-auto: auto !default;
+$spacing-none: 0 !default;
+$spacing-tiny: .125em !default;
+$spacing-xsmall: .25em !default;
+$spacing-small: .5em !default;
+$spacing-medium: 1em !default;
+$spacing-large: 1.5em !default;
+$spacing-xlarge: 2em !default;
+$spacing-super: 3em !default;
+
 $global-spacing: (
-	'auto': auto,
-	'none': 0,
-	'tiny': .125em,
-	'xsmall': .25em,
-	'small': .5em,
-	'medium': 1em,
-	'large': 1.5em,
-	'xlarge': 2em,
-	'super': 3em
+	'auto': $spacing-auto,
+	'none': $spacing-none,
+	'tiny': $spacing-tiny,
+	'xsmall': $spacing-xsmall,
+	'small': $spacing-small,
+	'medium': $spacing-medium,
+	'large': $spacing-large,
+	'xlarge': $spacing-xlarge,
+	'super': $spacing-super
 ) !default;
 
 // The default spacing unit is used for margins between common elements,
@@ -179,143 +196,211 @@ $colors: (
 //
 // Background Positions
 //
+$background-position-center: center center !default;
+$background-position-top: top center !default;
+$background-position-right: center right !default;
+$background-position-bottom: bottom center !default;
+$background-position-left: center left !default;
+
 $global-background-positions: (
-	'center': center center,
-	'top': top center,
-	'right': center right,
-	'bottom': bottom center,
-	'left': center left
+	'center': $background-position-center,
+	'top': $background-position-top,
+	'right': $background-position-right,
+	'bottom': $background-position-bottom,
+	'left': $background-position-left
 ) !default;
 
 //
 // Background Sizes
 //
+$background-size-cover: cover !default;
+$background-size-contain: contain !default;
+$background-size-auto: auto !default;
+
 $global-background-sizes: (
-	'cover': cover,
-	'contain': contain,
-	'auto': auto
+	'cover': $background-size-cover,
+	'contain': $background-size-contain,
+	'auto': $background-size-auto
 ) !default;
 
 //
 // Box Shadows
 //
+$box-shadow-lowest: inset 0 0 1px rgba(map-get($colors, black), .6), inset 0 6px 12px -6px rgba(map-get($colors, black), .2) !default;
+$box-shadow-lower: inset 0 0 1px rgba(map-get($colors, black), .6), inset 0 4px 8px -4px rgba(map-get($colors, black), .2) !default;
+$box-shadow-low: inset 0 0 1px rgba(map-get($colors, black), .6), inset 0 2px 4px -2px rgba(map-get($colors, black), .2) !default;
+$box-shadow-none: none !default;
+$box-shadow-high: 0 0 1px rgba(map-get($colors, black), .6), 0 5px 10px -3px rgba(map-get($colors, black), .4) !default;
+$box-shadow-higher: 0 0 1px rgba(map-get($colors, black), .6), 0 10px 25px -4px rgba(map-get($colors, black), .4) !default;
+$box-shadow-highest: 0 0 1px rgba(map-get($colors, black), .6), 0 20px 55px -8px rgba(map-get($colors, black), .4) !default;
+
 $global-box-shadows: (
-	'lowest': #{inset 0 0 1px rgba(map-get($colors, black), .6), inset 0 6px 12px -6px rgba(map-get($colors, black), .2)},
-	'lower': #{inset 0 0 1px rgba(map-get($colors, black), .6), inset 0 4px 8px -4px rgba(map-get($colors, black), .2)},
-	'low': #{inset 0 0 1px rgba(map-get($colors, black), .6), inset 0 2px 4px -2px rgba(map-get($colors, black), .2)},
-	'none': none,
-	'high': #{0 0 1px rgba(map-get($colors, black), .6), 0 5px 10px -3px rgba(map-get($colors, black), .4)},
-	'higher': #{0 0 1px rgba(map-get($colors, black), .6), 0 10px 25px -4px rgba(map-get($colors, black), .4)},
-	'highest': #{0 0 1px rgba(map-get($colors, black), .6), 0 20px 55px -8px rgba(map-get($colors, black), .4)}
+	'lowest': $box-shadow-lowest,
+	'lower': $box-shadow-lower,
+	'low': $box-shadow-low,
+	'none': $box-shadow-none,
+	'high': $box-shadow-high,
+	'higher': $box-shadow-higher,
+	'highest': $box-shadow-highest
 ) !default;
 
 //
 // Border Styles
 //
+$border-style-none: none !default;
+$border-style-dashed: dashed !default;
+$border-style-dotted: cover !default;
+$border-style-solid: solid !default;
+
 $global-border-styles: (
-	'dotted': dotted,
-	'dashed': dashed,
-	'solid': solid,
-	'none': none
+	'none': $border-style-none,
+	'dotted': $border-style-dashed,
+	'dashed': $border-style-dotted,
+	'solid': $border-style-solid
 ) !default;
 
 //
 // Border Widths
 //
+$border-width-0: 0 !default;
+$border-width-1: 1px !default;
+$border-width-2: 2px !default;
+$border-width-3: 3px !default;
+
 $global-border-widths: (
-	'0': 0,
-	'1': 1px,
-	'2': 2px,
-	'3': 3px
+	'0': $border-width-0,
+	'1': $border-width-1,
+	'2': $border-width-2,
+	'3': $border-width-3
 ) !default;
 
 //
 // Clearing
 //
+$clear-none: none !default;
+$clear-left: left !default;
+$clear-right: right !default;
+$clear-both: both !default;
+
 $global-clearing: (
-	'left': left,
-	'right': right,
-	'both': both,
-	'none': none
+	'none': $clear-none,
+	'left': $clear-left,
+	'right': $clear-right,
+	'both': $clear-both,
 ) !default;
 
 //
 // Column Counts
 //
+$column-count-1: 1 !default;
+$column-count-2: 2 !default;
+$column-count-3: 3 !default;
+$column-count-4: 4 !default;
+
 $global-column-counts: (
-	'1': 1,
-	'2': 2,
-	'3': 3,
-	'4': 4
+	'1': $column-count-1,
+	'2': $column-count-2,
+	'3': $column-count-3,
+	'4': $column-count-4
 ) !default;
 
 //
 // Font Families
 //
+$font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !default;
+$font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif !default;
+$font-family-monospace: "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace !default;
+
 $global-font-families: (
-	'system': #{-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif},
-	'sans-serif': #{"Helvetica Neue", Helvetica, Arial, sans-serif},
-	'serif': #{Georgia, Cambria, "Times New Roman", Times, serif},
-	'monospace': #{"Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace}
+	'system': $font-family-system,
+	'sans-serif': $font-family-sans-serif,
+	'serif': $font-family-serif,
+	'monospace': $font-family-monospace
 );
 
 //
 // Font Sizes
 //
-$text-font-size-xsmall: .67em !default;
-$text-font-size-small: .83em !default;
-$text-font-size-medium: 1em !default;
-$text-font-size-large: 1.17em !default;
-$text-font-size-xlarge: 1.5em !default;
-$text-font-size-super: 2em !default;
+$font-size-xsmall: .67em !default;
+$font-size-small: .83em !default;
+$font-size-medium: 1em !default;
+$font-size-large: 1.17em !default;
+$font-size-xlarge: 1.5em !default;
+$font-size-super: 2em !default;
 
 $global-font-sizes: (
-	'xsmall': .67em,
-	'small': .83em,
-	'medium': 1em,
-	'large': 1.17em,
-	'xlarge': 1.5em,
-	'super': 2em
+	'xsmall': $font-size-xsmall,
+	'small': $font-size-small,
+	'medium': $font-size-medium,
+	'large': $font-size-large,
+	'xlarge': $font-size-xlarge,
+	'super': $font-size-super
 ) !default;
 
 //
 // Font Weights
 //
+$font-weight-thin: 200 !default;
+$font-weight-light: 300 !default;
+$font-weight-regular: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semibold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-black: 800 !default;
+
 $global-font-weights: (
-	'thin': 200,
-	'light': 300,
-	'regular': 400,
-	'medium': 500,
-	'semibold': 600,
-	'bold': 700,
-	'black': 800
+	'thin': $font-weight-thin,
+	'light': $font-weight-light,
+	'regular': $font-weight-regular,
+	'medium': $font-weight-medium,
+	'semibold': $font-weight-semibold,
+	'bold': $font-weight-bold,
+	'black': $font-weight-black
 ) !default;
 
 //
 // Letter Spacing
 //
+$letter-spacing-tight: -.05em !default;
+$letter-spacing-none: 0 !default;
+$letter-spacing-xsmall: .01em !default;
+$letter-spacing-small: .025em !default;
+$letter-spacing-medium: .05em !default;
+$letter-spacing-large: .1em !default;
+$letter-spacing-xlarge: .15em !default;
+$letter-spacing-super: .25em !default;
+
 $global-letter-spacing: (
-	'tight': -.05em,
-	'none': 0,
-	'xsmall': .01em,
-	'small': .025em,
-	'medium': .05em,
-	'large': .1em,
-	'xlarge': .15em,
-	'super': .25em
+	'tight': $letter-spacing-tight,
+	'none': $letter-spacing-none,
+	'xsmall': $letter-spacing-xsmall,
+	'small': $letter-spacing-small,
+	'medium': $letter-spacing-medium,
+	'large': $letter-spacing-large,
+	'xlarge': $letter-spacing-xlarge,
+	'super': $letter-spacing-super
 ) !default;
 
 //
 // Line Heights
 //
+$line-height-none: 0 !default;
+$line-height-xsmall: 1.125 !default;
+$line-height-small: 1.25 !default;
+$line-height-medium: 1.5 !default;
+$line-height-large: 1.625 !default;
+$line-height-xlarge: 1.75 !default;
+$line-height-super: 2 !default;
+
 $global-line-heights: (
-	'none': 0,
-	'xsmall': 1.125,
-	'small': 1.25,
-	'medium': 1.5,
-	'large': 1.625,
-	'xlarge': 1.75,
-	'super': 2
+	'none': $line-height-none,
+	'xsmall': $line-height-xsmall,
+	'small': $line-height-small,
+	'medium': $line-height-medium,
+	'large': $line-height-large,
+	'xlarge': $line-height-xlarge,
+	'super': $line-height-super
 ) !default;
 
 //
@@ -424,58 +509,3 @@ $global-border-width: 1px !default;
 $global-border-style: solid !default;
 $global-border-color: map-get($colors, default) !default;
 $global-border-radius: map-get($global-radii, radius) !default;
-
-//
-// Focus styles
-//
-$border-color-focus: map-get($colors, blue) !default;
-$box-shadow-focus: inset 0 0 0 2px lighten($border-color-focus, $color-tint) !default;
-
-//
-// Typography
-//
-//$text-font-size-super: 2em !default;
-//$text-font-size-xlarge: 1.5em !default;
-//$text-font-size-large: 1.17em !default;
-//$text-font-size-medium: 1em !default;
-//$text-font-size-small: .83em !default;
-//$text-font-size-xsmall: .67em !default;
-$text-font-weight: normal !default;
-$text-font-weight-heavy: bold !default;
-$text-color: map-get($colors, black) !default;
-$highlight-padding: map-get($global-spacing, xsmall) map-get($global-spacing, xsmall) map-get($global-spacing, tiny) !default;
-$highlight-margin: map-get($global-spacing, none) -#{map-get($global-spacing, tiny)} !default;
-$highlight-color: map-get($colors, black) !default;
-$highlight-background-color: map-get($colors, yellow) !default;
-$help-border-bottom: $global-border-width dashed map-get($colors, grey-dark) !default;
-$paragraph-padding: map-get($global-spacing, small) map-get($global-spacing, none) !default;
-$paragraph-margin: map-get($global-spacing, none) !default;
-$paragraph-font-style: normal !default;
-$code-color: $text-color !default;
-$code-background-color: map-get($colors, grey-lighter) !default;
-$code-font-family: map-get($global-font-families, monospace) !default;
-$code-font-weight: $text-font-weight !default;
-$code-multiline-padding: map-get($global-spacing, small) map-get($global-spacing, medium) !default;
-$code-multiline-border-radius: $global-border-radius !default;
-$keyboard-color: map-get($colors, white) !default;
-$keyboard-background-color: map-get($colors, grey-dark) !default;
-$keyboard-border-width: 2px !default;
-$keyboard-border-style: $global-border-style !default;
-$keyboard-border-color: map-get($colors, grey-darker) !default;
-$keyboard-border: $keyboard-border-width $keyboard-border-style $keyboard-border-color !default;
-$keyboard-border-radius: $global-border-radius !default;
-$quotation-padding: map-get($global-spacing, medium) map-get($global-spacing, large) !default;
-$quotation-margin: map-get($global-spacing, none) !default;
-$quotation-color: map-get($colors, quiet) !default;
-$quotation-font-size: $text-font-size-large !default;
-$quotation-font-family: map-get($global-font-families, serif) !default;
-$quotation-border-width: 5px !default;
-$quotation-border-style: $global-border-style !default;
-$quotation-border-color: map-get($colors, default) !default;
-$quotation-brand-border-color: map-get($colors, brand) !default;
-$quotation-info-border-color: map-get($colors, info) !default;
-$quotation-warning-border-color: map-get($colors, warning) !default;
-$quotation-success-border-color: map-get($colors, success) !default;
-$quotation-error-border-color: map-get($colors, error) !default;
-$quotation-footer-color: map-get($colors, quiet) !default;
-$quotation-footer-font-style: italic !default;
