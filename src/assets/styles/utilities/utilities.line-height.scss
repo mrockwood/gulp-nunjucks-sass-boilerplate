@@ -22,11 +22,7 @@
 $line-height-namespace: $global-namespace-utilities + 'line' !default;
 $line-height-modifier: $global-separator-modifier !default;
 
-$line-height-map: (
-	'solid': 1,
-	'title': 1.25,
-	'copy': 1.5
-) !default;
+$line-height-map: $global-line-heights !default;
 
 $line-height-responsive: false !default;
 $line-height-breakpoints: $global-breakpoints !default;

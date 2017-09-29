@@ -22,11 +22,7 @@
 $white-space-namespace: $global-namespace-utilities + 'white-space' !default;
 $white-space-modifier: $global-separator-modifier !default;
 
-$white-space-map: (
-	'normal': normal,
-	'nowrap': nowrap,
-	'pre': pre
-) !default;
+$white-space-map: $global-white-space !default;
 
 $white-space-responsive: false !default;
 $white-space-breakpoints: $global-breakpoints !default;

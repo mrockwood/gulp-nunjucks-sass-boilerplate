@@ -23,7 +23,8 @@ $font-style-namespace: $global-namespace-utilities + 'font' !default;
 
 $font-style-map: (
 	'normal': normal,
-	'italic': italic
+	'italic': italic,
+	'oblique': oblique
 ) !default;
 
 $font-style-responsive: false !default;

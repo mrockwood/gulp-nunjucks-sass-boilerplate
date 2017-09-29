@@ -24,10 +24,6 @@ $font-family-modifier: $global-separator-modifier !default;
 
 $font-family-map: $global-font-families !default;
 
-$font-family-serif-name: $global-separator-modifier + 'serif' !default;
-$font-family-sans-serif-name: $global-separator-modifier + 'sans-serif' !default;
-$font-family-monospace-name: $global-separator-modifier + 'monospace' !default;
-
 $font-family-responsive: false !default;
 $font-family-breakpoints: $global-breakpoints !default;
 

@@ -27,9 +27,6 @@ $font-variant-map: (
 	'small-caps': small-caps
 ) !default;
 
-$font-variant-normal-name: $global-separator-modifier + 'normal-caps' !default;
-$font-variant-italic-name: $global-separator-modifier + 'small-caps' !default;
-
 $font-variant-responsive: false !default;
 $font-variant-breakpoints: $global-breakpoints !default;
 

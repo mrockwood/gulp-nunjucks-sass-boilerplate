@@ -22,12 +22,7 @@
 $letter-spacing-namespace: $global-namespace-utilities + 'tracking' !default;
 $letter-spacing-modifier: $global-separator-modifier !default;
 
-$letter-spacing-map: (
-	'tight': -.05em,
-	'none': 0em,
-	'slight': .1em,
-	'mega': .25em
-) !default;
+$letter-spacing-map: $global-letter-spacing !default;
 
 $letter-spacing-responsive: false !default;
 $letter-spacing-breakpoints: $global-breakpoints !default;

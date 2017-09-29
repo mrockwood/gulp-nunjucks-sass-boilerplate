@@ -22,11 +22,7 @@
 $word-break-namespace: $global-namespace-utilities + 'word-break' !default;
 $word-break-modifier: $global-separator-modifier !default;
 
-$word-break-map: (
-	'normal': normal,
-	'wrap': break-all,
-	'nowrap': keep-all
-) !default;
+$word-break-map: $global-word-breaks !default;
 
 $word-break-responsive: false !default;
 $word-break-breakpoints: $global-breakpoints !default;

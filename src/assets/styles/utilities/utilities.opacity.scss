@@ -22,21 +22,7 @@
 $opacity-namespace: $global-namespace-utilities + 'opacity' !default;
 $opacity-modifier: $global-separator-modifier !default;
 
-$opacity-map: (
-	'0': 0,
-	'025': .025,
-	'05': .05,
-	'10': .1,
-	'20': .2,
-	'30': .3,
-	'40': .4,
-	'50': .5,
-	'60': .6,
-	'70': .7,
-	'80': .8,
-	'90': .9,
-	'100': 1
-) !default;
+$opacity-map: $global-opacities !default;
 
 $opacity-responsive: false !default;
 $opacity-breakpoints: $global-breakpoints !default;

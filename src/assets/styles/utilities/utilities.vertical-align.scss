@@ -22,14 +22,7 @@
 $vertical-align-namespace: $global-namespace-utilities + 'valign' !default;
 $vertical-align-modifier: $global-separator-modifier !default;
 
-$vertical-align-map: (
-	'baseline': baseline,
-	'top': top,
-	'middle': middle,
-	'bottom': bottom,
-	'text-top': text-top,
-	'text-bottom': text-bottom
-) !default;
+$vertical-align-map: $global-vertical-alignment !default;
 
 $vertical-align-responsive: false !default;
 $vertical-align-breakpoints: $global-breakpoints !default;

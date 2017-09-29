@@ -404,6 +404,35 @@ $global-line-heights: (
 ) !default;
 
 //
+// Opacities
+//
+$opacity-0: 0 !default;
+$opacity-10: .1 !default;
+$opacity-20: .2 !default;
+$opacity-30: .3 !default;
+$opacity-40: .4 !default;
+$opacity-50: .5 !default;
+$opacity-60: .6 !default;
+$opacity-70: .7 !default;
+$opacity-80: .8 !default;
+$opacity-90: .9 !default;
+$opacity-100: 1 !default;
+
+$global-opacities: (
+	'0': $opacity-0,
+	'10': $opacity-10,
+	'20': $opacity-20,
+	'30': $opacity-30,
+	'40': $opacity-40,
+	'50': $opacity-50,
+	'60': $opacity-60,
+	'70': $opacity-70,
+	'80': $opacity-80,
+	'90': $opacity-90,
+	'100': $opacity-100
+) !default;
+
+//
 // Order
 //
 $order-first: -1 !default;
@@ -479,6 +508,51 @@ $global-speeds: (
 	'medium': $speed-medium,
 	'slow': $speed-slow,
 	'kenburns': $speed-kenburns
+) !default;
+
+//
+// Vertical Alignment
+//
+$valign-baseline: baseline !default;
+$valign-top: top !default;
+$valign-middle: middle !default;
+$valign-bottom: bottom !default;
+$valign-text-top: text-top !default;
+$valign-text-bottom: text-bottom !default;
+
+$global-vertical-alignment: (
+	'baseline': baseline,
+	'top': top,
+	'middle': middle,
+	'bottom': bottom,
+	'text-top': text-top,
+	'text-bottom': text-bottom
+) !default;
+
+//
+// White Space
+//
+$white-space-normal: normal !default;
+$white-space-nowrap: nowrap !default;
+$white-space-pre: pre !default;
+
+$global-white-space: (
+	'normal': $white-space-normal,
+	'nowrap': $white-space-nowrap,
+	'pre': $white-space-pre
+) !default;
+
+//
+// Word Breaks
+//
+$word-break-normal: normal !default;
+$word-break-wrap: break-all !default;
+$word-break-nowrap: keep-all !default;
+
+$global-word-breaks: (
+	'normal': $word-break-normal,
+	'wrap': $word-break-wrap,
+	'nowrap': $word-break-nowrap
 ) !default;
 
 //
