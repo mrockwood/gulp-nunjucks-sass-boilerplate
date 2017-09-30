@@ -37,7 +37,6 @@ $global-breakpoints: (
 //
 // Spacing
 //
-$spacing-auto: auto !default;
 $spacing-none: 0 !default;
 $spacing-tiny: .125em !default;
 $spacing-xsmall: .25em !default;
@@ -48,7 +47,6 @@ $spacing-xlarge: 2em !default;
 $spacing-super: 3em !default;
 
 $global-spacing: (
-	'auto': $spacing-auto,
 	'none': $spacing-none,
 	'tiny': $spacing-tiny,
 	'xsmall': $spacing-xsmall,

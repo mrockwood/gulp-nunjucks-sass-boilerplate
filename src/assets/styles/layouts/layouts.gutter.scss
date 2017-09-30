@@ -1,0 +1,89 @@
+/* ==========================================================================
+   #GUTTER
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$gutter-namespace: $global-namespace-layouts + 'gutter' !default;
+$gutter-modifier: $global-separator-modifier !default;
+
+$gutter-map: $global-spacing !default;
+
+$gutter-responsive: true !default;
+$gutter-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin gutter-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $gutter-map {
+
+		[class*="l-column"].#{$gutter-namespace}#{$gutter-modifier}#{$name}#{$breakpoint-alias} {
+			column-gap: $value;
+		}
+
+		[class*="l-flex"].#{$gutter-namespace}#{$gutter-modifier}#{$name}#{$breakpoint-alias} {
+			margin: 0 ( $value * -1 ) ( $value * -1 ) 0;
+
+			> * {
+				padding: 0 $value $value 0;
+			}
+		}
+
+		[class*="l-grid"].#{$gutter-namespace}#{$gutter-modifier}#{$name}#{$breakpoint-alias} {
+			grid-gap: $value;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include gutter-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($gutter-responsive == true) {
+
+	@each $size, $width in $gutter-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include gutter-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}
