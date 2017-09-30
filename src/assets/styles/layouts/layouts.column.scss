@@ -57,7 +57,7 @@ $column-breakpoints: $global-breakpoints !default;
 	// Default: .l-column--divider
 	.#{$column-namespace}#{$column-modifier}#{$column-divider-name}#{$breakpoint-alias} {
 		column-rule: $column-rule;
-		column-gap: ($column-gutter * 2);
+		//column-gap: ($column-gutter * 2);
 	}
 
 	/**
