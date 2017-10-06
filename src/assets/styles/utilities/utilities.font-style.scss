@@ -21,11 +21,7 @@
 
 $font-style-namespace: $global-namespace-utilities + 'font' !default;
 
-$font-style-map: (
-	'normal': normal,
-	'italic': italic,
-	'oblique': oblique
-) !default;
+$font-style-map: $global-font-styles !default;
 
 $font-style-responsive: false !default;
 $font-style-breakpoints: $global-breakpoints !default;

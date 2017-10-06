@@ -373,6 +373,19 @@ $global-font-sizes: (
 ) !default;
 
 //
+// Font Styles
+//
+$font-style-normal: normal !default;
+$font-style-italic: italic !default;
+$font-style-oblique: oblique !default;
+
+$global-font-styles: (
+	'normal': $font-style-normal,
+	'italic': $font-style-italic,
+	'oblique': $font-style-oblique
+) !default;
+
+//
 // Font Variants
 //
 $font-variant-normal: normal !default;
