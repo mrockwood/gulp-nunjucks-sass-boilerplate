@@ -373,6 +373,17 @@ $global-font-sizes: (
 ) !default;
 
 //
+// Font Variants
+//
+$font-variant-normal: normal !default;
+$font-variant-small-caps: small-caps !default;
+
+$global-font-variants: (
+	'normal-caps': $font-variant-normal,
+	'small-caps': $font-variant-small-caps
+) !default;
+
+//
 // Font Weights
 //
 $font-weight-thin: 200 !default;
