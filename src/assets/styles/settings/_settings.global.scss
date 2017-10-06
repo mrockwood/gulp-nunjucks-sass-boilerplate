@@ -634,6 +634,21 @@ $global-text-decorations: (
 ) !default;
 
 //
+// Text Transforms
+//
+$text-transform-none: none !default;
+$text-transform-capitalize: capitalize !default;
+$text-transform-lowercase: lowercase !default;
+$text-transform-uppercase: uppercase !default;
+
+$global-text-transforms: (
+	'no-transform': $text-transform-none,
+	'capitalize': $text-transform-capitalize,
+	'lowercase': $text-transform-lowercase,
+	'uppercase': $text-transform-uppercase
+) !default;
+
+//
 // Vertical Alignment
 //
 $valign-baseline: baseline !default;

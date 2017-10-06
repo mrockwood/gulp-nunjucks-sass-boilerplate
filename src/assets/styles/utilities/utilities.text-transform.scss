@@ -22,12 +22,7 @@
 $text-transform-namespace: $global-namespace-utilities + '' !default;
 $text-transform-modifier: '' !default;
 
-$text-transform-map: (
-	'capitalize': capitalize,
-	'lowercase': lowercase,
-	'uppercase': uppercase,
-	'no-transform': none
-) !default;
+$text-transform-map: $global-text-transforms !default;
 
 $text-transform-responsive: false !default;
 $text-transform-breakpoints: $global-breakpoints !default;
