@@ -22,10 +22,7 @@
 $font-variant-namespace: $global-namespace-utilities + 'font' !default;
 $font-variant-modifier: $global-separator-modifier !default;
 
-$font-variant-map: (
-	'normal-caps': normal,
-	'small-caps': small-caps
-) !default;
+$font-variant-map: $global-font-variants !default;
 
 $font-variant-responsive: false !default;
 $font-variant-breakpoints: $global-breakpoints !default;
