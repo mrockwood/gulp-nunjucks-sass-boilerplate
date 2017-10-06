@@ -517,6 +517,21 @@ $global-outlines: (
 ) !default;
 
 //
+// Overflows
+//
+$overflow-visible: visible !default;
+$overflow-hidden: hidden !default;
+$overflow-scroll: scroll !default;
+$overflow-auto: auto !default;
+
+$global-overflows: (
+	'visible': $overflow-visible,
+	'hidden': $overflow-hidden,
+	'scroll': $overflow-scroll,
+	'auto': $overflow-auto
+) !default;
+
+//
 // Radii
 //
 $radius-none: 0 !default;

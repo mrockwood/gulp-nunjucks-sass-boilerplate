@@ -24,12 +24,7 @@ $overflow-x-namespace: $global-namespace-utilities + 'overflow-x' !default;
 $overflow-y-namespace: $global-namespace-utilities + 'overflow-y' !default;
 $overflow-modifier: $global-separator-modifier !default;
 
-$overflow-map: (
-	'visible': visible,
-	'hidden': hidden,
-	'scroll': scroll,
-	'auto': auto
-) !default;
+$overflow-map: $global-overflows !default;
 
 $overflow-responsive: false !default;
 $overflow-breakpoints: $global-breakpoints !default;
