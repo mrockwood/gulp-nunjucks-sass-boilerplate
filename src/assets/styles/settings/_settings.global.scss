@@ -504,6 +504,19 @@ $global-ordering: (
 ) !default;
 
 //
+// Outlines
+//
+$outline-normal: 1px solid !default;
+$outline-transparent: 1px solid transparent !default;
+$outline-none: 0 !default;
+
+$global-outlines: (
+	'normal': $outline-normal,
+	'transparent': $outline-transparent,
+	'none': $outline-none
+) !default;
+
+//
 // Radii
 //
 $radius-none: 0 !default;
