@@ -621,6 +621,19 @@ $global-text-alignment: (
 ) !default;
 
 //
+// Text Decorations
+//
+$text-decoration-none: none !default;
+$text-decoration-strike: line-through !default;
+$text-decoration-underline: underline !default;
+
+$global-text-decorations: (
+	'no-underline': $text-decoration-none,
+	'strike': $text-decoration-strike,
+	'underline': $text-decoration-underline
+) !default;
+
+//
 // Vertical Alignment
 //
 $valign-baseline: baseline !default;
