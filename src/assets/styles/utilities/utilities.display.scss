@@ -22,16 +22,7 @@
 $display-namespace: $global-namespace-utilities + '' !default;
 $display-modifier: '' !default;
 
-$display-map: (
-	'hide': none,
-	'inline': inline,
-	'inline-block': inline-block,
-	'block': block,
-	'table': table,
-	'table-cell': table-cell,
-	'flex': flex,
-	'inline-flex': inline-flex
-) !default;
+$display-map: $global-displays !default;
 
 $display-responsive: true !default;
 $display-breakpoints: $global-breakpoints !default;
