@@ -22,12 +22,7 @@
 $position-namespace: $global-namespace-utilities + '' !default;
 $position-modifier: '' !default;
 
-$position-map: (
-	'relative': relative,
-	'absolute': absolute,
-	'fixed': fixed,
-	'static': static
-) !default;
+$position-map: $global-positions !default;
 
 $position-responsive: false !default;
 $position-breakpoints: $global-breakpoints !default;

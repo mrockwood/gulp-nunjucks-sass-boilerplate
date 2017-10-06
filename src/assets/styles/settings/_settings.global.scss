@@ -532,6 +532,23 @@ $global-overflows: (
 ) !default;
 
 //
+// Positions
+//
+$position-static: static !default;
+$position-relative: relative !default;
+$position-absolute: absolute !default;
+$position-fixed: fixed !default;
+$position-sticky: sticky !default;
+
+$global-positions: (
+	'static': $position-static,
+	'relative': $position-relative,
+	'absolute': $position-absolute,
+	'fixed': $position-fixed,
+	'sticky': $position-sticky
+) !default;
+
+//
 // Radii
 //
 $radius-none: 0 !default;
