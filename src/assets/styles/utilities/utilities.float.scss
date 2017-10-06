@@ -22,11 +22,7 @@
 $float-namespace: $global-namespace-utilities + 'float' !default;
 $float-modifier: $global-separator-modifier !default;
 
-$float-map: (
-	'left': left,
-	'right': right,
-	'none': none
-) !default;
+$float-map: $global-floats !default;
 
 $float-responsive: false !default;
 $float-breakpoints: $global-breakpoints !default;
