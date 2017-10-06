@@ -606,6 +606,21 @@ $global-speeds: (
 ) !default;
 
 //
+// Text Alignment
+//
+$text-align-left: left !default;
+$text-align-right: right !default;
+$text-align-center: center !default;
+$text-align-justify: justify !default;
+
+$global-text-alignment: (
+	'left': $text-align-left,
+	'right': $text-align-right,
+	'center': $text-align-center,
+	'justify': $text-align-justify
+) !default;
+
+//
 // Vertical Alignment
 //
 $valign-baseline: baseline !default;

@@ -22,12 +22,7 @@
 $text-align-namespace: $global-namespace-utilities + '' !default;
 $text-align-modifier: '' !default;
 
-$text-align-map: (
-	'left': left,
-	'right': right,
-	'center': center,
-	'justify': justify
-) !default;
+$text-align-map: $global-text-alignment !default;
 
 $text-align-responsive: false !default;
 $text-align-breakpoints: $global-breakpoints !default;
