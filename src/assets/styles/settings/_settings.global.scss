@@ -591,18 +591,22 @@ $global-rotations: (
 //
 // Speeds
 //
-$speed-instant: 0 !default;
+$speed-fastest: 0 !default;
+$speed-faster: 100ms !default;
 $speed-fast: 200ms !default;
-$speed-medium: 300ms !default;
-$speed-slow: 500ms !default;
-$speed-kenburns: 15s !default;
+$speed-medium: 400ms !default;
+$speed-slow: 600ms !default;
+$speed-slower: 800ms !default;
+$speed-slowest: 15s !default;
 
 $global-speeds: (
-	'instant': $speed-instant,
+	'fastest': $speed-fastest,
+	'faster': $speed-faster,
 	'fast': $speed-fast,
 	'medium': $speed-medium,
 	'slow': $speed-slow,
-	'kenburns': $speed-kenburns
+	'slower': $speed-slower,
+	'slowest': $speed-slowest
 ) !default;
 
 //
