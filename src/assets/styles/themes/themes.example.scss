@@ -1,7 +1,28 @@
-$border-radius: 0;
-// ... add more variables here ...
+/* ==========================================================================
+   #EXAMPLE THEME
+   ========================================================================== */
 
-//@import "../settings/settings.global";
+
+
+
+//
+// Options
+//
+
+$border-radius: 0;
+
+
+
+
+//
+// Dependencies
+//
+
 @import "themes.manifest";
 
-// ... add class overrides here ...
+
+
+
+//
+// Class Overrides
+//
