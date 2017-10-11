@@ -29,7 +29,7 @@ $margin-right-name: '-right' !default;
 $margin-bottom-name: '-bottom' !default;
 $margin-left-name: '-left' !default;
 
-$margin-map: $global-spacing !default;
+$margin-map: map-merge($global-spacing, ("auto": auto)) !default;
 
 $margin-responsive: false !default;
 $margin-breakpoints: $global-breakpoints !default;
