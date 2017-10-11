@@ -41,7 +41,7 @@ $visibility-breakpoints: $global-breakpoints !default;
 	 */
 
 	// hide visually, but available for screenreaders
-	.#{$visibility-namespace} {
+	.#{$visibility-namespace}#{$breakpoint-alias} {
 		position: absolute;
 		margin: -1px;
 		padding: 0;
@@ -55,8 +55,8 @@ $visibility-breakpoints: $global-breakpoints !default;
 
 	// extends the .visuallyhidden class to allow the element to
 	// be focusable when navigated to via the keyboard
-	.#{$visibility-namespace}#{$visibility-modifier}#{$visibility-focus-name}:active,
-	.#{$visibility-namespace}#{$visibility-modifier}#{$visibility-focus-name}:focus {
+	.#{$visibility-namespace}#{$visibility-modifier}#{$visibility-focus-name}#{$breakpoint-alias}:active,
+	.#{$visibility-namespace}#{$visibility-modifier}#{$visibility-focus-name}#{$breakpoint-alias}:focus {
 		position: static;
 		margin: 0;
 		width: auto;
