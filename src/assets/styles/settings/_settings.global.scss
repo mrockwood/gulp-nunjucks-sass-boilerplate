@@ -555,14 +555,14 @@ $global-positions: (
 // Radii
 //
 $radius-none: 0 !default;
-$radius-radius: .25em !default;
-$radius-round: 30em !default;
+$radius-round: .25em !default;
+$radius-pill: 30em !default;
 $radius-circle: 100% !default;
 
 $global-radii: (
 	'none': $radius-none,
-	'radius': $radius-radius,
 	'round': $radius-round,
+	'pill': $radius-pill,
 	'circle': $radius-circle
 ) !default;
 
