@@ -329,6 +329,23 @@ $global-displays: (
 ) !default;
 
 //
+// Easing
+//
+$easing-default: cubic-bezier(.4, .25, .3, 1) !default;
+$easing-in: cubic-bezier(.6, .1, .8, .7) !default;
+$easing-out: cubic-bezier(.2, .3, .4, .9) !default;
+$easing-in-out: cubic-bezier(.5, .15, .4, 1) !default;
+$easing-bounce: cubic-bezier(.4, .25, .3, 1.4) !default;
+
+$global-easings:(
+	'default': $easing-default,
+	'in': $easing-in,
+	'out': $easing-out,
+	'in-out': $easing-in-out,
+	'bounce': $easing-bounce
+) !default;
+
+//
 // Floats
 //
 $float-left: left !default;
