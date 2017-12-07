@@ -22,6 +22,8 @@
 $grid-namespace: $global-namespace-layouts + 'grid' !default;
 $grid-element: $global-separator-element !default;
 $grid-modifier: $global-separator-modifier !default;
+$grid-inline-name: 'inline' !default;
+$grid-subgrid-name: 'subgrid' !default;
 $grid-item-name: 'item' !default;
 
 $grid-gutter: $global-spacing-default !default;
@@ -41,11 +43,43 @@ $grid-breakpoints: $global-breakpoints !default;
 	@supports (display: grid) {
 
 		.#{$grid-namespace}#{$breakpoint-alias} {
+			align-content: var(#{--align-content}, center);
+			align-items: var(#{--align-items}, stretch);
 			display: grid;
+			grid-auto-columns: var(#{--grid-auto-columns}, auto);
+			grid-auto-flow: var(#{--grid-auto-flow}, row);
+			grid-auto-rows: var(#{--grid-auto-rows}, auto);
 			grid-gap: $grid-gutter;
+			grid-template-columns: var(#{--grid-template-columns}, repeat(var(--columns, 4), var(--column-size, 1fr)));
+			grid-template-rows: var(#{--grid-template-rows}, none);
+			justify-content: var(#{--justify-content}, space-evenly);
+			justify-items: var(#{--justify-items}, stretch);
+
+			> * {
+				margin-top: 0;
+			}
 		}
 
-		//.#{$grid-namespace}#{$grid-element}#{$grid-item-name}#{$breakpoint-alias} {}
+		.#{$grid-namespace}#{$grid-modifier}#{$grid-inline-name}#{$breakpoint-alias} {
+			display: inline-grid;
+		}
+
+		.#{$grid-namespace}#{$grid-modifier}#{$grid-subgrid-name}#{$breakpoint-alias} {
+			display: subgrid;
+		}
+
+		.#{$grid-namespace}#{$grid-element}#{$grid-item-name}#{$breakpoint-alias} {
+			align-self: var(#{--align-self}, auto);
+			grid-column: var(#{--grid-column}, auto);
+			grid-row: var(#{--grid-row}, auto);
+			justify-self: var(#{--justify-self}, auto);
+			max-width: 100%;
+			min-height: 0px;
+			min-width: 0px;
+
+			// testing
+			background-color: rgba(0,0,0,0.1);
+		}
 
 	}
 
