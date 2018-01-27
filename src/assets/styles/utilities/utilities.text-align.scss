@@ -24,8 +24,23 @@ $text-align-modifier: '' !default;
 
 $text-align-map: $global-text-alignment !default;
 
-$text-align-responsive: false !default;
+$text-align-responsive: true !default;
 $text-align-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Placeholders
+//
+
+@each $name, $value in $text-align-map {
+
+	%#{$text-align-namespace}#{$text-align-modifier}#{$name} {
+		text-align: $value;
+	}
+
+}
 
 
 
@@ -39,7 +54,9 @@ $text-align-breakpoints: $global-breakpoints !default;
 	@each $name, $value in $text-align-map {
 
 		.#{$text-align-namespace}#{$text-align-modifier}#{$name}#{$breakpoint-alias} {
-			text-align: $value !important;
+
+			@extend %#{$text-align-namespace}#{$text-align-modifier}#{$name};
+
 		}
 
 	}
