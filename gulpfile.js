@@ -35,17 +35,17 @@ const config = {
 	dev: gutil.env.dev,
 	styles: {
 		browsers: 'last 2 versions',
-		src: 'src/assets/styles/themes/*.scss',
+		src: 'src/styles/themes/*.scss',
 		dest: 'dist/assets/styles',
 		watch: 'src/assets/styles/**/*.scss',
 	},
 	scripts: {
-		src: './src/assets/scripts/toolkit.js',
+		src: './src/scripts/toolkit.js',
 		dest: 'dist/assets/scripts',
 		watch: 'src/assets/scripts/**/*',
 	},
 	images: {
-		src: ['src/assets/images/**/*', 'src/favicon.ico'],
+		src: ['src/assets/images/**/*'],
 		dest: 'dist/assets/images',
 		watch: 'src/assets/images/**/*',
 	},
