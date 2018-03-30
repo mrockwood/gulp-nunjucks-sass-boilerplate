@@ -45,7 +45,7 @@ const config = {
 		watch: 'src/assets/scripts/**/*',
 	},
 	images: {
-		src: ['src/assets/images/**/*'],
+		src: 'src/assets/images/**/*',
 		dest: 'dist/assets/images',
 		watch: 'src/assets/images/**/*',
 	},
