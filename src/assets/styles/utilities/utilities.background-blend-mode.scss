@@ -1,0 +1,77 @@
+/* ==========================================================================
+   #BACKGROUND-POSITION
+   ========================================================================== */
+
+
+
+
+//
+// Dependencies
+//
+
+@import "../settings/settings.global";
+@import "../tools/tools.media-queries";
+
+
+
+
+//
+// Options
+//
+
+$background-blend-namespace: $global-namespace-utilities + 'background' !default;
+$background-blend-modifier: $global-separator-modifier !default;
+
+$background-blend-map: $global-background-blend-modes !default;
+
+$background-blend-responsive: false !default;
+$background-blend-breakpoints: $global-breakpoints !default;
+
+
+
+
+//
+// Mixins
+//
+
+@mixin background-blend-classes($breakpoint-alias: null) {
+
+	@each $name, $value in $background-blend-map {
+
+		.#{$background-blend-namespace}#{$background-blend-modifier}#{$name}#{$breakpoint-alias} {
+			background-blend-mode: $value !important;
+		}
+
+	}
+
+}
+
+
+
+
+//
+// Classes
+//
+
+@include background-blend-classes;
+
+
+
+
+//
+// Responsive Classes
+//
+
+@if ($background-blend-responsive == true) {
+
+	@each $size, $width in $background-blend-breakpoints {
+
+		@include media('>#{$size}') {
+
+			@include background-blend-classes(#{$global-separator-breakpoint + $size});
+
+		}
+
+	}
+
+}
