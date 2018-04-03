@@ -24,6 +24,9 @@ $container-modifier: $global-separator-modifier !default;
 
 $container-map: $global-breakpoints !default;
 
+$container-center: true !default;
+$container-padding: true !default;
+
 $container-responsive: true !default;
 $container-breakpoints: $global-breakpoints !default;
 
@@ -42,15 +45,20 @@ $container-breakpoints: $global-breakpoints !default;
 	 * 3. Fix IE10-11 horizontal scrollbars
 	 */
 	.#{$container-namespace}#{$breakpoint-alias} {
-		//box-sizing: content-box; /* [1] */
-		//display: flex;
-		//flex-direction: column;
-		margin-left: auto; /* [2] */
-		margin-right: auto; /* [2] */
+
+		@if $container-center == true {
+			margin-left: auto; /* [2] */
+			margin-right: auto; /* [2] */
+		}
+
 		//min-height: 1px; /* [3] */
-		overflow: hidden; /* [3] */
-		padding-left: $global-spacing-default;
-		padding-right: $global-spacing-default;
+		overflow: hidden;
+
+		@if $container-padding == true {
+			padding-left: $global-spacing-default;
+			padding-right: $global-spacing-default;
+		}
+
 		//width: 100%;
 	}
 
