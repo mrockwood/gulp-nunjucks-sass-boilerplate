@@ -41,7 +41,7 @@ $float-breakpoints: $global-breakpoints !default;
 	@each $name, $value in $float-map {
 
 		.#{$float-namespace}#{$float-modifier}#{$name}#{$breakpoint-alias} {
-			float: $value !important;
+			float: $value;
 
 			@if ($float-margin == true and $value == left) {
 				margin-right: $global-spacing-default;
