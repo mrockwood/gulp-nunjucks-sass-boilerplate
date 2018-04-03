@@ -19,12 +19,14 @@
 // Options
 //
 
-$float-namespace: $global-namespace-utilities + 'float' !default;
+$float-namespace: $global-namespace-layouts + 'float' !default;
 $float-modifier: $global-separator-modifier !default;
 
 $float-map: $global-floats !default;
 
-$float-responsive: false !default;
+$float-margin: true !default;
+
+$float-responsive: true !default;
 $float-breakpoints: $global-breakpoints !default;
 
 
@@ -39,10 +41,17 @@ $float-breakpoints: $global-breakpoints !default;
 	@each $name, $value in $float-map {
 
 		.#{$float-namespace}#{$float-modifier}#{$name}#{$breakpoint-alias} {
-			@if ($value == left or $value == right) {
-				_display: inline;
-			}
 			float: $value !important;
+
+			@if ($float-margin == true and $value == left) {
+				margin-right: $global-spacing-default;
+				margin-bottom: $global-spacing-default;
+			}
+
+			@if ($float-margin == true and $value == right) {
+				margin-left: $global-spacing-default;
+				margin-bottom: $global-spacing-default;
+			}
 		}
 
 	}
