@@ -37,17 +37,17 @@ const config = {
 		browsers: 'last 2 versions',
 		src: 'src/styles/themes/*.scss',
 		dest: 'dist/assets/styles',
-		watch: 'src/assets/styles/**/*.scss',
+		watch: 'src/styles/**/*.scss',
 	},
 	scripts: {
 		src: './src/scripts/toolkit.js',
 		dest: 'dist/assets/scripts',
-		watch: 'src/assets/scripts/**/*',
+		watch: 'src/scripts/**/*',
 	},
 	images: {
 		src: 'src/assets/images/**/*',
 		dest: 'dist/assets/images',
-		watch: 'src/assets/images/**/*',
+		watch: 'src/images/**/*',
 	},
 	templates: {
 		src: 'src/templates/*.{html,nunjucks,njk}',
